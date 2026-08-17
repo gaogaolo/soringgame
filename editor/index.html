@@ -1,0 +1,3026 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Fruit Sort 关卡编辑器</title>
+  <style>
+    :root {
+      --sky: #9ee5ff;
+      --sea: #3bb7d4;
+      --sand: #ffd37b;
+      --cream: #fff8e8;
+      --paper: #ffffff;
+      --ink: #23304c;
+      --muted: #68748d;
+      --line: #ded5bd;
+      --wood: #c97942;
+      --wood-dark: #7a3e2a;
+      --mint: #41c6a4;
+      --berry: #d94f8e;
+      --warning: #ef8b36;
+      --danger: #bd3552;
+      --shadow: 0 16px 34px rgba(80, 91, 124, 0.18);
+      --toy-shadow: inset 0 -6px 0 rgba(0, 0, 0, 0.12), 0 6px 0 rgba(125, 78, 41, 0.18);
+      --radius: 8px;
+      --red: #ef4b52;
+      --orange: #ff9a35;
+      --yellow: #ffd84c;
+      --green: #54bd69;
+      --cyan: #34c7d7;
+      --blue: #5f87ed;
+      --purple: #9566e9;
+      --pink: #ee68af;
+      --slot-w: 54px;
+      --slot-h: 31px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      color: var(--ink);
+      font-family: Nunito, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      letter-spacing: 0;
+      background:
+        radial-gradient(circle at 15% 10%, rgba(255, 255, 255, 0.88) 0 9%, transparent 10%),
+        radial-gradient(circle at 86% 7%, rgba(255, 255, 255, 0.65) 0 6%, transparent 7%),
+        linear-gradient(180deg, #8fdfff 0%, #ccf5ff 40%, #ffe0a0 41%, #ffc35e 100%);
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      opacity: 0.48;
+      background:
+        radial-gradient(ellipse at 20% 82%, rgba(255, 255, 255, 0.55) 0 11%, transparent 12%),
+        radial-gradient(ellipse at 74% 76%, rgba(255, 255, 255, 0.48) 0 9%, transparent 10%),
+        repeating-linear-gradient(170deg, transparent 0 42px, rgba(255, 255, 255, 0.16) 43px 48px);
+    }
+
+    button,
+    input,
+    select,
+    textarea {
+      font: inherit;
+    }
+
+    button {
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .app {
+      position: relative;
+      min-height: 100vh;
+      padding: 16px;
+      display: grid;
+      grid-template-rows: auto 1fr;
+      gap: 14px;
+    }
+
+    .topbar {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      align-items: center;
+      gap: 16px;
+      border: 3px solid #fff;
+      border-radius: 8px;
+      padding: 14px 16px;
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.94), rgba(255, 248, 232, 0.96));
+      box-shadow: var(--shadow);
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      min-width: 0;
+    }
+
+    .brand-mark {
+      width: 50px;
+      height: 50px;
+      border: 3px solid #fff;
+      border-radius: 50%;
+      background:
+        radial-gradient(circle at 35% 26%, #fff6b5 0 14%, transparent 15%),
+        conic-gradient(from -10deg, var(--red), var(--orange), var(--yellow), var(--green), var(--cyan), var(--blue), var(--purple), var(--pink), var(--red));
+      box-shadow: inset 0 -7px 0 rgba(87, 36, 76, 0.16), 0 5px 0 rgba(126, 70, 42, 0.22);
+      flex: 0 0 auto;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: 24px;
+      line-height: 1.05;
+      font-weight: 950;
+      color: #29345a;
+    }
+
+    .subtitle {
+      max-width: 72vw;
+      margin-top: 4px;
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 700;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .toolbar {
+      display: flex;
+      justify-content: flex-end;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .layout {
+      display: grid;
+      grid-template-columns: 360px minmax(0, 1.15fr) minmax(360px, 0.85fr);
+      gap: 14px;
+      align-items: start;
+    }
+
+    .panel {
+      min-width: 0;
+      border: 3px solid #fff;
+      border-radius: 8px;
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.96), rgba(255, 248, 232, 0.96));
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .panel-header {
+      min-height: 56px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 12px 14px;
+      background: linear-gradient(180deg, #fff6cf, #ffe5a3);
+      border-bottom: 2px solid #e4c36c;
+    }
+
+    .panel-title {
+      font-size: 15px;
+      font-weight: 950;
+      color: #3e3154;
+    }
+
+    .panel-body {
+      padding: 14px;
+    }
+
+    .section {
+      padding: 14px 0;
+      border-bottom: 2px dashed rgba(122, 62, 42, 0.16);
+    }
+
+    .section:first-child {
+      padding-top: 0;
+    }
+
+    .section:last-child {
+      border-bottom: 0;
+      padding-bottom: 0;
+    }
+
+    .section-title {
+      margin: 0 0 10px;
+      color: #7a3e2a;
+      font-size: 12px;
+      line-height: 1;
+      font-weight: 950;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .field-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+
+    .field {
+      display: grid;
+      gap: 6px;
+    }
+
+    .field.full {
+      grid-column: 1 / -1;
+    }
+
+    label {
+      color: #67516b;
+      font-size: 12px;
+      font-weight: 900;
+    }
+
+    input,
+    select,
+    textarea {
+      width: 100%;
+      min-height: 38px;
+      padding: 8px 10px;
+      border: 2px solid #e3c77f;
+      border-radius: 8px;
+      outline: none;
+      color: var(--ink);
+      background: #fffef7;
+      box-shadow: inset 0 2px 0 rgba(255, 255, 255, 0.8);
+    }
+
+    input:focus,
+    select:focus,
+    textarea:focus {
+      border-color: var(--mint);
+      box-shadow: 0 0 0 4px rgba(65, 198, 164, 0.24);
+    }
+
+    input[type="range"] {
+      min-height: 30px;
+      padding: 0;
+      accent-color: var(--berry);
+    }
+
+    .range-row {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 44px;
+      gap: 8px;
+      align-items: center;
+    }
+
+    .range-value {
+      min-height: 32px;
+      display: grid;
+      place-items: center;
+      border: 2px solid #fff;
+      border-radius: 8px;
+      color: #fff;
+      font-weight: 950;
+      background: var(--berry);
+      box-shadow: var(--toy-shadow);
+    }
+
+    .btn {
+      min-height: 38px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 7px;
+      padding: 8px 12px;
+      border: 2px solid #fff;
+      border-radius: 8px;
+      background: linear-gradient(180deg, #ffffff, #ffe9bd);
+      color: #4d3a56;
+      box-shadow: 0 5px 0 rgba(126, 70, 42, 0.18);
+      cursor: pointer;
+      font-weight: 950;
+      white-space: nowrap;
+    }
+
+    .btn:hover {
+      transform: translateY(-1px);
+      filter: brightness(1.02);
+    }
+
+    .btn:active {
+      transform: translateY(3px);
+      box-shadow: 0 2px 0 rgba(126, 70, 42, 0.18);
+    }
+
+    .btn.primary {
+      background: linear-gradient(180deg, #5ee5c6, #22a88f);
+      color: #fff;
+    }
+
+    .btn.berry {
+      background: linear-gradient(180deg, #ff8cc2, #d94f8e);
+      color: #fff;
+    }
+
+    .btn.warning {
+      background: linear-gradient(180deg, #ffc86b, #ef8b36);
+      color: #fff;
+    }
+
+    .btn.small {
+      min-height: 32px;
+      padding: 5px 9px;
+      font-size: 12px;
+    }
+
+    .icon {
+      width: 16px;
+      height: 16px;
+      flex: 0 0 auto;
+      stroke: currentColor;
+      stroke-width: 2.3;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      fill: none;
+    }
+
+    .hint {
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.45;
+      font-weight: 700;
+    }
+
+    .fixed-value {
+      min-height: 38px;
+      display: flex;
+      align-items: center;
+      padding: 8px 10px;
+      border: 2px solid #e3c77f;
+      border-radius: 8px;
+      color: #67516b;
+      background: #fff6de;
+      font-size: 13px;
+      font-weight: 900;
+    }
+
+    .json-actions {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+      margin: 10px 0;
+    }
+
+    .field-guide {
+      margin: 0;
+      padding: 10px 12px;
+      border: 2px solid #e8d8af;
+      border-radius: 8px;
+      background: #fff8e8;
+      color: #67516b;
+      font-size: 12px;
+      line-height: 1.55;
+      font-weight: 700;
+    }
+
+    .field-guide dt {
+      margin-top: 7px;
+      color: #7a3e2a;
+      font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+      font-size: 11px;
+      font-weight: 900;
+    }
+
+    .field-guide dt:first-child { margin-top: 0; }
+    .field-guide dd { margin: 0; }
+
+    .metrics {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 8px;
+    }
+
+    .metric {
+      min-width: 0;
+      padding: 10px;
+      border: 2px solid #fff;
+      border-radius: 8px;
+      background: linear-gradient(180deg, #f3fdff, #d8f5ff);
+      box-shadow: inset 0 -5px 0 rgba(59, 183, 212, 0.16);
+    }
+
+    .metric .value {
+      color: #256b8a;
+      font-size: 22px;
+      line-height: 1;
+      font-weight: 950;
+    }
+
+    .metric .label {
+      margin-top: 4px;
+      color: #54627d;
+      font-size: 11px;
+      font-weight: 900;
+    }
+
+    .swatches {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 8px;
+    }
+
+    .swatch {
+      min-height: 36px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 2px solid rgba(255, 255, 255, 0.8);
+      border-radius: 8px;
+      color: #fff;
+      font-size: 12px;
+      font-weight: 950;
+      opacity: 0.35;
+      text-shadow: 0 2px 2px rgba(50, 36, 48, 0.24);
+      box-shadow: var(--toy-shadow);
+    }
+
+    .swatch.active {
+      opacity: 1;
+    }
+
+    .workspace {
+      display: grid;
+      gap: 14px;
+    }
+
+    .tray-editor {
+      overflow: auto;
+      padding: 2px 2px 6px;
+    }
+
+    .tray-columns {
+      min-width: max-content;
+      display: grid;
+      grid-auto-flow: column;
+      grid-auto-columns: minmax(142px, 1fr);
+      gap: 12px;
+    }
+
+    .tray-column {
+      min-height: 280px;
+      display: grid;
+      grid-template-rows: auto 1fr auto;
+      border: 2px solid #e8c671;
+      border-radius: 8px;
+      background:
+        linear-gradient(90deg, rgba(255, 255, 255, 0.48) 0 10px, transparent 10px 20px),
+        linear-gradient(180deg, #fff9df, #ffe8aa);
+      box-shadow: inset 0 -7px 0 rgba(175, 103, 47, 0.12);
+    }
+
+    .tray-column.drag-over {
+      border-color: var(--berry);
+      box-shadow: 0 0 0 4px rgba(217, 79, 142, 0.18);
+    }
+
+    .tray-column-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      padding: 9px 10px;
+      border-bottom: 2px solid rgba(122, 62, 42, 0.14);
+    }
+
+    .column-name {
+      color: #7a3e2a;
+      font-size: 12px;
+      font-weight: 950;
+    }
+
+    .target-list {
+      min-height: 202px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      padding: 10px;
+    }
+
+    .target-box {
+      overflow: hidden;
+      border: 2px solid #fff;
+      border-radius: 8px;
+      background: #fffef7;
+      cursor: grab;
+      box-shadow: 0 6px 0 rgba(126, 70, 42, 0.13);
+    }
+
+    .target-box.dragging {
+      opacity: 0.52;
+    }
+
+    .target-box-main {
+      min-height: 44px;
+      display: grid;
+      grid-template-columns: 24px minmax(0, 1fr) 28px;
+      align-items: center;
+      gap: 6px;
+      padding: 8px;
+    }
+
+    .drag-handle {
+      color: rgba(74, 54, 85, 0.48);
+      font-weight: 950;
+      text-align: center;
+    }
+
+    .target-select {
+      min-height: 30px;
+      padding: 4px 7px;
+      font-size: 12px;
+      font-weight: 900;
+    }
+
+    .remove-box {
+      min-height: 28px;
+      border: 0;
+      border-radius: 7px;
+      background: transparent;
+      color: rgba(74, 54, 85, 0.56);
+      cursor: pointer;
+      font-weight: 950;
+    }
+
+    .remove-box:hover {
+      color: #fff;
+      background: var(--danger);
+    }
+
+    .capacity-row {
+      height: 15px;
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      border-top: 2px solid rgba(255, 255, 255, 0.82);
+    }
+
+    .capacity-row span {
+      border-right: 1px solid rgba(255, 255, 255, 0.52);
+    }
+
+    .capacity-row span:last-child {
+      border-right: 0;
+    }
+
+    .tray-column-foot {
+      padding: 8px 10px 10px;
+      border-top: 2px solid rgba(122, 62, 42, 0.14);
+    }
+
+    .board-preview,
+    .play-board {
+      display: grid;
+      grid-template-columns: repeat(var(--map-cols), minmax(72px, 1fr));
+      gap: 10px;
+      align-items: end;
+      overflow-x: auto;
+      padding-bottom: 4px;
+    }
+
+    .map-column,
+    .play-column {
+      position: relative;
+      min-height: 304px;
+      display: flex;
+      flex-direction: column-reverse;
+      align-items: center;
+      justify-content: flex-start;
+      gap: 4px;
+      padding: 36px 8px 10px;
+      border: 2px solid #fff;
+      border-radius: 8px;
+      background:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.9), rgba(217, 246, 255, 0.92)),
+        repeating-linear-gradient(90deg, transparent 0 16px, rgba(59, 183, 212, 0.1) 17px 20px);
+      box-shadow: inset 0 -8px 0 rgba(66, 137, 157, 0.13), 0 6px 0 rgba(126, 70, 42, 0.12);
+    }
+
+    .map-column::before,
+    .play-column::before {
+      content: attr(data-title);
+      position: absolute;
+      top: 8px;
+      left: 8px;
+      right: 8px;
+      color: #4a7890;
+      font-size: 11px;
+      font-weight: 950;
+      text-align: center;
+    }
+
+    .play-column {
+      min-height: 248px;
+      cursor: pointer;
+    }
+
+    .play-column:hover {
+      transform: translateY(-1px);
+      border-color: #ffe084;
+    }
+
+    .play-column:disabled,
+    .play-column.disabled {
+      cursor: default;
+      opacity: 0.66;
+    }
+
+    .card-seg,
+    .play-card,
+    .buffer-card {
+      width: var(--slot-w);
+      min-height: var(--slot-h);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 2px solid rgba(255, 255, 255, 0.74);
+      border-radius: 8px;
+      color: #fff;
+      font-size: 12px;
+      font-weight: 950;
+      text-shadow: 0 2px 2px rgba(50, 36, 48, 0.26);
+      box-shadow: var(--toy-shadow);
+      position: relative;
+      flex: 0 0 auto;
+    }
+
+    .card-seg::after {
+      content: attr(data-count);
+      position: absolute;
+      right: 4px;
+      bottom: 1px;
+      font-size: 10px;
+      opacity: 0.86;
+    }
+
+    .card-back {
+      color: #fff7d0;
+      text-shadow: 0 2px 2px rgba(50, 36, 48, 0.3);
+      background:
+        repeating-linear-gradient(45deg, rgba(255, 255, 255, 0.16) 0 5px, transparent 5px 10px),
+        #6d6289;
+    }
+
+    .play-target.card-back {
+      color: #fff7d0;
+      background:
+        repeating-linear-gradient(45deg, rgba(255, 255, 255, 0.15) 0 5px, transparent 5px 10px),
+        #6d6289;
+    }
+
+    .play-card {
+      width: 46px;
+      min-height: 24px;
+      font-size: 11px;
+    }
+
+    .buffer-card {
+      width: 28px;
+      min-height: 28px;
+      font-size: 11px;
+    }
+
+    .play-lab {
+      display: grid;
+      gap: 12px;
+    }
+
+    .play-head {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .play-status {
+      min-height: 38px;
+      display: flex;
+      align-items: center;
+      padding: 8px 10px;
+      border: 2px solid #fff;
+      border-radius: 8px;
+      color: #493855;
+      background: linear-gradient(180deg, #fff, #fff0c8);
+      font-size: 13px;
+      font-weight: 900;
+    }
+
+    .play-targets {
+      display: grid;
+      grid-auto-flow: column;
+      grid-auto-columns: minmax(104px, 1fr);
+      gap: 8px;
+      overflow-x: auto;
+      padding-bottom: 3px;
+    }
+
+    .play-target-col {
+      min-height: 116px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      padding: 8px;
+      border: 2px solid #fff;
+      border-radius: 8px;
+      background: linear-gradient(180deg, #fff7cf, #ffdc8e);
+    }
+
+    .play-target {
+      min-height: 35px;
+      display: grid;
+      grid-template-columns: 28px minmax(0, 1fr);
+      gap: 7px;
+      align-items: center;
+      padding: 5px 7px;
+      border: 2px solid rgba(255, 255, 255, 0.72);
+      border-radius: 8px;
+      color: #fff;
+      font-size: 12px;
+      font-weight: 950;
+      text-shadow: 0 2px 2px rgba(50, 36, 48, 0.26);
+      box-shadow: inset 0 -5px 0 rgba(0, 0, 0, 0.12);
+    }
+
+    .play-target.next {
+      opacity: 0.48;
+      filter: saturate(0.55);
+    }
+
+    .target-fill {
+      height: 8px;
+      border-radius: 99px;
+      background: rgba(255, 255, 255, 0.48);
+      overflow: hidden;
+    }
+
+    .target-fill span {
+      display: block;
+      height: 100%;
+      width: var(--fill);
+      background: rgba(255, 255, 255, 0.92);
+    }
+
+    .buffer-row {
+      display: grid;
+      grid-template-columns: repeat(var(--buffer-cols), 28px);
+      gap: 5px;
+      overflow-x: auto;
+      padding: 8px;
+      border: 2px solid #fff;
+      border-radius: 8px;
+      background: linear-gradient(180deg, #6f5e87, #403452);
+      box-shadow: inset 0 6px 0 rgba(255, 255, 255, 0.12);
+    }
+
+    .buffer-slot {
+      width: 28px;
+      height: 28px;
+      border-radius: 7px;
+      background: rgba(255, 255, 255, 0.16);
+      border: 1px solid rgba(255, 255, 255, 0.22);
+    }
+
+    .output-panel {
+      position: sticky;
+      top: 16px;
+    }
+
+    textarea {
+      min-height: 448px;
+      resize: vertical;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+      font-size: 12px;
+      line-height: 1.45;
+      tab-size: 2;
+      background: #fffef7;
+    }
+
+    .status {
+      min-height: 18px;
+      margin-top: 8px;
+      color: #63536d;
+      font-size: 12px;
+      font-weight: 800;
+    }
+
+    .empty-state {
+      min-height: 152px;
+      display: grid;
+      place-items: center;
+      padding: 18px;
+      border: 2px dashed rgba(122, 62, 42, 0.26);
+      border-radius: 8px;
+      color: var(--muted);
+      text-align: center;
+      font-weight: 800;
+      line-height: 1.5;
+    }
+
+    .color-red { background: var(--red); }
+    .color-orange { background: var(--orange); }
+    .color-yellow { background: var(--yellow); color: #49360b; text-shadow: none; }
+    .color-green { background: var(--green); }
+    .color-cyan { background: var(--cyan); }
+    .color-blue { background: var(--blue); }
+    .color-purple { background: var(--purple); }
+    .color-pink { background: var(--pink); }
+
+    @media (prefers-reduced-motion: no-preference) {
+      .btn,
+      .play-column,
+      .target-box {
+        transition: transform 140ms ease, filter 140ms ease, box-shadow 140ms ease;
+      }
+    }
+
+    @media (max-width: 1240px) {
+      .layout {
+        grid-template-columns: 340px minmax(0, 1fr);
+      }
+
+      .output-panel {
+        grid-column: 1 / -1;
+        position: static;
+      }
+    }
+
+    @media (max-width: 860px) {
+      .app {
+        padding: 10px;
+      }
+
+      .topbar {
+        grid-template-columns: 1fr;
+      }
+
+      .toolbar {
+        justify-content: flex-start;
+      }
+
+      .layout {
+        grid-template-columns: 1fr;
+      }
+
+      .field-grid,
+      .play-head {
+        grid-template-columns: 1fr;
+      }
+
+      .board-preview,
+      .play-board {
+        grid-template-columns: repeat(var(--map-cols), 72px);
+      }
+
+      .subtitle {
+        max-width: 100%;
+        white-space: normal;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="app">
+    <header class="topbar">
+      <div class="brand">
+        <div class="brand-mark" aria-hidden="true"></div>
+        <div>
+          <h1>Fruit Sort 关卡编辑器</h1>
+          <div class="subtitle">目标盒 6 张消除，暂存槽默认 13 格，生成后可直接试玩。</div>
+        </div>
+      </div>
+      <div class="toolbar">
+        <button class="btn" id="resetBtn" type="button" title="载入 Level3 风格样例">
+          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 4v6h6"></path><path d="M20 11a8 8 0 1 0-2.3 5.7"></path></svg>
+          样例
+        </button>
+        <button class="btn" id="copyBtn" type="button" title="复制右侧 JSON">
+          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="9" width="11" height="11" rx="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+          复制 JSON
+        </button>
+        <button class="btn berry" id="importBtn" type="button" title="导入右侧 JSON 或选择本地 JSON 文件">
+          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21V9"></path><path d="m7 14 5-5 5 5"></path><path d="M5 3h14"></path></svg>
+          导入 JSON
+        </button>
+        <button class="btn primary" id="downloadBtn" type="button" title="下载当前关卡 JSON">
+          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v12"></path><path d="m7 10 5 5 5-5"></path><path d="M5 21h14"></path></svg>
+          下载
+        </button>
+      </div>
+    </header>
+
+    <main class="layout">
+      <aside class="panel">
+        <div class="panel-header">
+          <div>
+            <div class="panel-title">关卡参数</div>
+            <div class="hint">调颜色、列数、容量和难度。</div>
+          </div>
+        </div>
+        <div class="panel-body">
+          <section class="section">
+            <div class="field-grid">
+              <div class="field full">
+                <label for="levelNumber">关卡编号 Level</label>
+                <input id="levelNumber" type="number" min="1" max="999999" step="1" value="1">
+              </div>
+              <div class="field">
+                <label for="colorCount">总颜色数</label>
+                <div class="range-row">
+                  <input id="colorCount" type="range" min="2" max="8" value="4">
+                  <div class="range-value" id="colorCountValue">4</div>
+                </div>
+              </div>
+              <div class="field">
+                <label for="targetColumnCount">收集盘列数</label>
+                <div class="range-row">
+                  <input id="targetColumnCount" type="range" min="2" max="5" value="3">
+                  <div class="range-value" id="targetColumnCountValue">3</div>
+                </div>
+              </div>
+              <div class="field">
+                <label for="targetBoxCount">目标盒/收集组数</label>
+                <input id="targetBoxCount" type="number" min="1" max="80" value="13">
+              </div>
+              <div class="field">
+                <label for="mapColumnCount">地图列数</label>
+                <input id="mapColumnCount" type="number" min="2" max="5" value="3">
+              </div>
+              <div class="field">
+                <label>暂存槽容量</label>
+                <div class="fixed-value">固定 13 格</div>
+              </div>
+              <div class="field">
+                <label for="seedInput">随机种子</label>
+                <input id="seedInput" type="number" value="3001">
+              </div>
+            </div>
+          </section>
+
+          <section class="section">
+            <h2 class="section-title">可用颜色池</h2>
+            <div class="swatches" id="palette"></div>
+          </section>
+
+          <section class="section">
+            <h2 class="section-title">生成规则</h2>
+            <div class="field-grid">
+              <div class="field full">
+                <label for="difficulty">难度</label>
+                <select id="difficulty">
+                  <option value="easy">简单</option>
+                  <option value="normal" selected>普通</option>
+                  <option value="medium">中等</option>
+                  <option value="hard">困难</option>
+                  <option value="hell">地狱</option>
+                </select>
+              </div>
+              <div class="field">
+                <label for="variantMode">目标盘分布</label>
+                <select id="variantMode">
+                  <option value="balanced" selected>均衡</option>
+                  <option value="frontload">前列优先</option>
+                  <option value="spread">更分散</option>
+                </select>
+              </div>
+              <div class="field">
+                <label for="riskPreview">前段堵塞强度</label>
+                <input id="riskPreview" value="普通" readonly>
+              </div>
+              <div class="field">
+                <label for="minSplitCount">最小分割卡片数</label>
+                <input id="minSplitCount" type="number" min="1" max="6" step="1" value="1">
+              </div>
+              <div class="field">
+                <label for="maxSplitCount">最大分割卡片数</label>
+                <input id="maxSplitCount" type="number" min="1" max="6" step="1" value="6">
+              </div>
+              <div class="field">
+                <label for="targetHideRatio">收集盘隐藏占比</label>
+                <div class="range-row">
+                  <input id="targetHideRatio" type="range" min="0" max="100" step="1" value="0">
+                  <div class="range-value" id="targetHideRatioValue">0%</div>
+                </div>
+              </div>
+              <div class="field">
+                <label for="mapHideRatio">地图列隐藏占比</label>
+                <div class="range-row">
+                  <input id="mapHideRatio" type="range" min="0" max="100" step="1" value="0">
+                  <div class="range-value" id="mapHideRatioValue">0%</div>
+                </div>
+              </div>
+              <button class="btn warning" id="arrangeBtn" type="button">
+                <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h16"></path><path d="M7 12h10"></path><path d="M10 19h4"></path></svg>
+                自动排收集盘
+              </button>
+              <button class="btn primary" id="generateBtn" type="button">
+                <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v4"></path><path d="M12 17v4"></path><path d="M3 12h4"></path><path d="M17 12h4"></path><path d="m6.2 6.2 2.8 2.8"></path><path d="m15 15 2.8 2.8"></path><path d="m17.8 6.2-2.8 2.8"></path><path d="m9 15-2.8 2.8"></path></svg>
+                自动生成关卡
+              </button>
+            </div>
+            <p class="hint">隐藏占比只从可被遮挡的对象中计算：非第一排目标盒与非顶层地图色组。卡背隐藏颜色，但保留地图色组数量。</p>
+          </section>
+
+          <section class="section">
+            <h2 class="section-title">当前统计</h2>
+            <div class="metrics">
+              <div class="metric">
+                <div class="value" id="metricBoxes">0</div>
+                <div class="label">目标盒</div>
+              </div>
+              <div class="metric">
+                <div class="value" id="metricCards">0</div>
+                <div class="label">总卡数</div>
+              </div>
+              <div class="metric">
+                <div class="value" id="metricColors">0</div>
+                <div class="label">颜色数</div>
+              </div>
+              <div class="metric">
+                <div class="value" id="metricBuffer">13</div>
+                <div class="label">暂存槽</div>
+              </div>
+              <div class="metric">
+                <div class="value" id="metricSolvability">未测</div>
+                <div class="label">可解性</div>
+              </div>
+              <div class="metric">
+                <div class="value" id="metricSolveMoves">-</div>
+                <div class="label">求解步数</div>
+              </div>
+            </div>
+          </section>
+        </div>
+      </aside>
+
+      <section class="workspace">
+        <div class="panel">
+          <div class="panel-header">
+            <div>
+              <div class="panel-title">收集盘排列</div>
+              <div class="hint">拖动目标盒调整顺序，越靠上越早出现。</div>
+            </div>
+          </div>
+          <div class="panel-body">
+            <div class="tray-editor">
+              <div class="tray-columns" id="trayColumns"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="panel">
+          <div class="panel-header">
+            <div>
+              <div class="panel-title">地图列堆预览</div>
+              <div class="hint">右下角数字是该压缩包段张数；试玩会按张展开。</div>
+            </div>
+          </div>
+          <div class="panel-body">
+            <div class="board-preview" id="boardPreview"></div>
+          </div>
+        </div>
+
+        <div class="panel">
+          <div class="panel-header">
+            <div>
+              <div class="panel-title">试玩</div>
+              <div class="hint">点击地图列顶牌，能进第一行目标盒就入盒，否则进暂存槽。</div>
+            </div>
+            <div class="toolbar">
+              <button class="btn small" id="playResetBtn" type="button">重开</button>
+              <button class="btn small berry" id="hintBtn" type="button">提示一步</button>
+            </div>
+          </div>
+          <div class="panel-body">
+            <div class="play-lab">
+              <div class="play-head">
+                <div class="play-status" id="playStatus">生成关卡后可试玩。</div>
+                <div class="metrics">
+                  <div class="metric">
+                    <div class="value" id="playMoves">0</div>
+                    <div class="label">步数</div>
+                  </div>
+                  <div class="metric">
+                    <div class="value" id="playLeft">0</div>
+                    <div class="label">剩余卡</div>
+                  </div>
+                </div>
+              </div>
+              <div class="play-targets" id="playTargets"></div>
+              <div class="buffer-row" id="playBuffer"></div>
+              <div class="play-board" id="playBoard"></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <aside class="panel output-panel">
+        <div class="panel-header">
+          <div>
+            <div class="panel-title">导出配置</div>
+            <div class="hint">最小可复原格式，可在此粘贴 JSON 后导入。</div>
+          </div>
+        </div>
+        <div class="panel-body">
+          <textarea id="jsonOutput" spellcheck="false"></textarea>
+          <div class="json-actions">
+            <button class="btn berry" id="importTextBtn" type="button">导入文本</button>
+            <button class="btn" id="importFileBtn" type="button">选择 JSON 文件</button>
+          </div>
+          <input id="importFileInput" type="file" accept="application/json,.json" hidden>
+          <dl class="field-guide">
+            <dt>Level</dt><dd>关卡编号，数值类型，例如 <code>1</code>、<code>2</code>。</dd>
+            <dt>TargetColumns</dt><dd>收集盘列。外层数组区分列，内层数组按目标激活顺序保存颜色编号。</dd>
+            <dt>MapColumns</dt><dd>地图列。外层数组区分列，内层色组按底部到顶部保存。</dd>
+            <dt>[Color, Count]</dt><dd>地图色组。<code>Color</code> 是颜色编号，<code>Count</code> 是连续卡牌数量。</dd>
+            <dt>TargetHidden</dt><dd>可选。隐藏目标盒坐标，格式为 <code>[列索引, 盒索引]</code>，索引从 0 开始。</dd>
+            <dt>MapHidden</dt><dd>可选。隐藏地图色组坐标，格式为 <code>[列索引, 色组索引]</code>，地图色组索引按底部到顶部计算。</dd>
+            <dt>固定规则</dt><dd>每个目标收集 6 张消除，暂存槽固定 13 格，地图与收集盘均为 2 至 5 列。</dd>
+          </dl>
+          <div class="status" id="status"></div>
+        </div>
+      </aside>
+    </main>
+  </div>
+
+  <script>
+    const FIXED_BUFFER_COUNT = 13;
+
+    const COLORS = [
+      { id: 0, key: "red", name: "Red", label: "红" },
+      { id: 1, key: "orange", name: "Orange", label: "橙" },
+      { id: 2, key: "yellow", name: "Yellow", label: "黄" },
+      { id: 3, key: "green", name: "Green", label: "绿" },
+      { id: 4, key: "cyan", name: "Cyan", label: "青" },
+      { id: 5, key: "blue", name: "Blue", label: "蓝" },
+      { id: 6, key: "purple", name: "Purple", label: "紫" },
+      { id: 7, key: "pink", name: "Pink", label: "粉" }
+    ];
+
+    const DIFFICULTIES = {
+      easy: { label: "简单", buryDepth: 0, riskyTopRatio: 0.08, openingPlayableRatio: 1, split: [[6], [3, 3]], noise: 0.14 },
+      normal: { label: "普通", buryDepth: 1, riskyTopRatio: 0.22, openingPlayableRatio: 0.75, split: [[3, 3], [2, 4], [2, 2, 2]], noise: 0.24 },
+      medium: { label: "中等", buryDepth: 2, riskyTopRatio: 0.48, openingPlayableRatio: 0.38, split: [[2, 2, 2], [1, 2, 3], [2, 1, 3]], noise: 0.36 },
+      hard: { label: "困难", buryDepth: 3, riskyTopRatio: 0.68, openingPlayableRatio: 0.12, split: [[1, 2, 3], [2, 1, 1, 2], [1, 1, 2, 2]], noise: 0.48 },
+      hell: { label: "地狱", buryDepth: 4, riskyTopRatio: 0.88, openingPlayableRatio: 0, split: [[1, 1, 1, 3], [1, 1, 2, 2], [1, 2, 1, 2], [1, 1, 1, 1, 2]], noise: 0.62 }
+    };
+
+    const SOLVER_PROFILES = {
+      easy: { attempts: 60, candidateStates: 18000, finalStates: 140000 },
+      normal: { attempts: 80, candidateStates: 28000, finalStates: 180000 },
+      medium: { attempts: 100, candidateStates: 42000, finalStates: 240000 },
+      hard: { attempts: 120, candidateStates: 60000, finalStates: 320000 },
+      hell: { attempts: 150, candidateStates: 80000, finalStates: 420000 }
+    };
+
+    const state = {
+      targetColumns: [],
+      controlColumns: [],
+      draggingBoxId: null,
+      lastGenerated: null,
+      lastSolvability: null,
+      play: null
+    };
+
+    const els = {
+      levelNumber: document.getElementById("levelNumber"),
+      colorCount: document.getElementById("colorCount"),
+      colorCountValue: document.getElementById("colorCountValue"),
+      targetColumnCount: document.getElementById("targetColumnCount"),
+      targetColumnCountValue: document.getElementById("targetColumnCountValue"),
+      targetBoxCount: document.getElementById("targetBoxCount"),
+      mapColumnCount: document.getElementById("mapColumnCount"),
+      seedInput: document.getElementById("seedInput"),
+      difficulty: document.getElementById("difficulty"),
+      minSplitCount: document.getElementById("minSplitCount"),
+      maxSplitCount: document.getElementById("maxSplitCount"),
+      targetHideRatio: document.getElementById("targetHideRatio"),
+      targetHideRatioValue: document.getElementById("targetHideRatioValue"),
+      mapHideRatio: document.getElementById("mapHideRatio"),
+      mapHideRatioValue: document.getElementById("mapHideRatioValue"),
+      riskPreview: document.getElementById("riskPreview"),
+      variantMode: document.getElementById("variantMode"),
+      palette: document.getElementById("palette"),
+      trayColumns: document.getElementById("trayColumns"),
+      boardPreview: document.getElementById("boardPreview"),
+      jsonOutput: document.getElementById("jsonOutput"),
+      status: document.getElementById("status"),
+      metricBoxes: document.getElementById("metricBoxes"),
+      metricCards: document.getElementById("metricCards"),
+      metricColors: document.getElementById("metricColors"),
+      metricBuffer: document.getElementById("metricBuffer"),
+      metricSolvability: document.getElementById("metricSolvability"),
+      metricSolveMoves: document.getElementById("metricSolveMoves"),
+      arrangeBtn: document.getElementById("arrangeBtn"),
+      generateBtn: document.getElementById("generateBtn"),
+      resetBtn: document.getElementById("resetBtn"),
+      copyBtn: document.getElementById("copyBtn"),
+      importBtn: document.getElementById("importBtn"),
+      importTextBtn: document.getElementById("importTextBtn"),
+      importFileBtn: document.getElementById("importFileBtn"),
+      importFileInput: document.getElementById("importFileInput"),
+      downloadBtn: document.getElementById("downloadBtn"),
+      playResetBtn: document.getElementById("playResetBtn"),
+      hintBtn: document.getElementById("hintBtn"),
+      playStatus: document.getElementById("playStatus"),
+      playTargets: document.getElementById("playTargets"),
+      playBuffer: document.getElementById("playBuffer"),
+      playBoard: document.getElementById("playBoard"),
+      playMoves: document.getElementById("playMoves"),
+      playLeft: document.getElementById("playLeft")
+    };
+
+    function clamp(value, min, max) {
+      return Math.max(min, Math.min(max, Number(value) || min));
+    }
+
+    function createRng(seed) {
+      let value = Number(seed) || 1;
+      value = value % 2147483647;
+      if (value <= 0) value += 2147483646;
+      return function rng() {
+        value = (value * 16807) % 2147483647;
+        return (value - 1) / 2147483646;
+      };
+    }
+
+    function shuffle(array, rng) {
+      for (let i = array.length - 1; i > 0; i -= 1) {
+        const j = Math.floor(rng() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+      }
+      return array;
+    }
+
+    function activeColors() {
+      return COLORS.slice(0, Number(els.colorCount.value));
+    }
+
+    function colorById(id) {
+      return COLORS.find(color => color.id === Number(id)) || COLORS[0];
+    }
+
+    function colorClass(id) {
+      return `color-${colorById(id).key}`;
+    }
+
+    function currentDifficulty() {
+      return DIFFICULTIES[els.difficulty.value] || DIFFICULTIES.normal;
+    }
+
+    function currentSolverProfile() {
+      return SOLVER_PROFILES[els.difficulty.value] || SOLVER_PROFILES.normal;
+    }
+
+    function solutionPeakLimit() {
+      const safePeak = FIXED_BUFFER_COUNT - 1;
+      const table = {
+        easy: safePeak,
+        normal: Math.min(5, safePeak),
+        medium: Math.min(9, safePeak),
+        hard: safePeak,
+        hell: safePeak
+      };
+      return table[els.difficulty.value] ?? table.normal;
+    }
+
+    function clearSolvability() {
+      state.lastSolvability = null;
+    }
+
+    function newBox(colorId, boxType = 1) {
+      return {
+        uid: `box_${Date.now().toString(36)}_${Math.random().toString(36).slice(2, 8)}`,
+        color: colorId,
+        hidden: false,
+        linkId: "",
+        boxType
+      };
+    }
+
+    function ensureColumnCount(count) {
+      const next = clamp(count, 2, 5);
+      while (state.targetColumns.length < next) state.targetColumns.push([]);
+      while (state.targetColumns.length > next) {
+        const removed = state.targetColumns.pop();
+        state.targetColumns[state.targetColumns.length - 1].push(...removed);
+      }
+      els.targetColumnCount.value = next;
+      els.targetColumnCountValue.textContent = String(next);
+    }
+
+    function normalizeTargetColors() {
+      const maxColor = Number(els.colorCount.value) - 1;
+      state.targetColumns.forEach(column => {
+        column.forEach(box => {
+          if (box.color > maxColor) box.color = box.color % (maxColor + 1);
+        });
+      });
+    }
+
+    function totalBoxes() {
+      return state.targetColumns.reduce((sum, column) => sum + column.length, 0);
+    }
+
+    function readBoxCountInput() {
+      return clamp(els.targetBoxCount.value, 1, 80);
+    }
+
+    function hiddenRatio(input) {
+      const ratio = clamp(input.value, 0, 100);
+      input.value = String(ratio);
+      return ratio;
+    }
+
+    function applyHiddenRatio(entries, ratio, rng, setHidden) {
+      const hiddenCount = Math.round(entries.length * ratio / 100);
+      shuffle(entries.slice(), rng).slice(0, hiddenCount).forEach(setHidden);
+    }
+
+    function assignTargetHiddenStates() {
+      const ratio = hiddenRatio(els.targetHideRatio);
+      const eligible = [];
+      state.targetColumns.forEach(column => {
+        column.forEach((box, boxIndex) => {
+          box.hidden = false;
+          if (boxIndex > 0) eligible.push(box);
+        });
+      });
+      applyHiddenRatio(eligible, ratio, createRng(Number(els.seedInput.value) + 11003), box => {
+        box.hidden = true;
+      });
+    }
+
+    function assignMapHiddenStates(columns = state.controlColumns) {
+      const ratio = hiddenRatio(els.mapHideRatio);
+      const eligible = [];
+      columns.forEach(column => {
+        column.forEach((segment, segmentIndex) => {
+          segment.Hidden = false;
+          if (segmentIndex < column.length - 1) eligible.push(segment);
+        });
+      });
+      applyHiddenRatio(eligible, ratio, createRng(Number(els.seedInput.value) + 19001), segment => {
+        segment.Hidden = true;
+      });
+    }
+
+    function targetHiddenCoordinates() {
+      const coordinates = [];
+      state.targetColumns.forEach((column, columnIndex) => {
+        column.forEach((box, boxIndex) => {
+          if (box.hidden) coordinates.push([columnIndex, boxIndex]);
+        });
+      });
+      return coordinates;
+    }
+
+    function mapHiddenCoordinates() {
+      const coordinates = [];
+      state.controlColumns.forEach((column, columnIndex) => {
+        column.forEach((segment, segmentIndex) => {
+          if (segment.Hidden) coordinates.push([columnIndex, segmentIndex]);
+        });
+      });
+      return coordinates;
+    }
+
+    function renderPalette() {
+      els.palette.innerHTML = "";
+      const enabled = Number(els.colorCount.value);
+      COLORS.forEach(color => {
+        const swatch = document.createElement("div");
+        swatch.className = `swatch color-${color.key}${color.id < enabled ? " active" : ""}`;
+        swatch.textContent = color.label;
+        els.palette.appendChild(swatch);
+      });
+    }
+
+    function renderTrayColumns() {
+      els.trayColumns.innerHTML = "";
+      state.targetColumns.forEach((column, columnIndex) => {
+        const columnEl = document.createElement("div");
+        columnEl.className = "tray-column";
+        columnEl.dataset.columnIndex = String(columnIndex);
+        columnEl.addEventListener("dragover", handleColumnDragOver);
+        columnEl.addEventListener("dragleave", handleColumnDragLeave);
+        columnEl.addEventListener("drop", handleColumnDrop);
+
+        const head = document.createElement("div");
+        head.className = "tray-column-head";
+        const name = document.createElement("div");
+        name.className = "column-name";
+        name.textContent = `收集列 ${columnIndex + 1}`;
+        const count = document.createElement("div");
+        count.className = "hint";
+        count.textContent = `${column.length} 盒`;
+        head.append(name, count);
+
+        const list = document.createElement("div");
+        list.className = "target-list";
+        list.dataset.columnIndex = String(columnIndex);
+        column.forEach((box, boxIndex) => {
+          list.appendChild(renderTargetBox(box, columnIndex, boxIndex));
+        });
+
+        const foot = document.createElement("div");
+        foot.className = "tray-column-foot";
+        const add = document.createElement("button");
+        add.type = "button";
+        add.className = "btn small";
+        add.textContent = "添加目标盒";
+        add.addEventListener("click", () => {
+          const color = activeColors()[(column.length + columnIndex) % activeColors().length];
+          column.push(newBox(color.id));
+          els.targetBoxCount.value = totalBoxes();
+          assignTargetHiddenStates();
+          state.controlColumns = [];
+          clearSolvability();
+          startPlaytest(false);
+          renderAll("已添加目标盒");
+        });
+        foot.appendChild(add);
+
+        columnEl.append(head, list, foot);
+        els.trayColumns.appendChild(columnEl);
+      });
+    }
+
+    function renderTargetBox(box, columnIndex, boxIndex) {
+      const boxEl = document.createElement("div");
+      boxEl.className = "target-box";
+      boxEl.draggable = true;
+      boxEl.dataset.boxId = box.uid;
+      boxEl.dataset.columnIndex = String(columnIndex);
+      boxEl.dataset.boxIndex = String(boxIndex);
+      boxEl.addEventListener("dragstart", handleBoxDragStart);
+      boxEl.addEventListener("dragend", handleBoxDragEnd);
+
+      const main = document.createElement("div");
+      main.className = "target-box-main";
+
+      const handle = document.createElement("div");
+      handle.className = "drag-handle";
+      handle.textContent = "::";
+
+      const select = document.createElement("select");
+      select.className = "target-select";
+      activeColors().forEach(color => {
+        const option = document.createElement("option");
+        option.value = String(color.id);
+        option.textContent = `${color.label} / ${color.name}`;
+        select.appendChild(option);
+      });
+      select.value = String(box.color);
+      select.addEventListener("change", () => {
+        box.color = Number(select.value);
+        state.controlColumns = [];
+        clearSolvability();
+        startPlaytest(false);
+        renderAll("已更新目标盒颜色");
+      });
+
+      const remove = document.createElement("button");
+      remove.type = "button";
+      remove.className = "remove-box";
+      remove.textContent = "x";
+      remove.title = "删除目标盒";
+      remove.addEventListener("click", () => {
+        state.targetColumns[columnIndex].splice(boxIndex, 1);
+        els.targetBoxCount.value = totalBoxes();
+        assignTargetHiddenStates();
+        state.controlColumns = [];
+        clearSolvability();
+        startPlaytest(false);
+        renderAll("已删除目标盒");
+      });
+
+      main.append(handle, select, remove);
+
+      const capacity = document.createElement("div");
+      capacity.className = `capacity-row ${colorClass(box.color)}`;
+      for (let i = 0; i < 6; i += 1) capacity.appendChild(document.createElement("span"));
+
+      boxEl.append(main, capacity);
+      return boxEl;
+    }
+
+    function handleBoxDragStart(event) {
+      const boxEl = event.currentTarget;
+      state.draggingBoxId = boxEl.dataset.boxId;
+      boxEl.classList.add("dragging");
+      event.dataTransfer.effectAllowed = "move";
+      event.dataTransfer.setData("text/plain", state.draggingBoxId);
+    }
+
+    function handleBoxDragEnd(event) {
+      event.currentTarget.classList.remove("dragging");
+      state.draggingBoxId = null;
+      document.querySelectorAll(".tray-column.drag-over").forEach(el => el.classList.remove("drag-over"));
+    }
+
+    function handleColumnDragOver(event) {
+      event.preventDefault();
+      event.currentTarget.classList.add("drag-over");
+      event.dataTransfer.dropEffect = "move";
+    }
+
+    function handleColumnDragLeave(event) {
+      event.currentTarget.classList.remove("drag-over");
+    }
+
+    function handleColumnDrop(event) {
+      event.preventDefault();
+      const targetColumnIndex = Number(event.currentTarget.dataset.columnIndex);
+      event.currentTarget.classList.remove("drag-over");
+      const boxId = event.dataTransfer.getData("text/plain") || state.draggingBoxId;
+      if (!boxId) return;
+
+      let movingBox = null;
+      state.targetColumns.forEach(column => {
+        const idx = column.findIndex(box => box.uid === boxId);
+        if (idx >= 0) movingBox = column.splice(idx, 1)[0];
+      });
+      if (!movingBox) return;
+
+      const list = event.currentTarget.querySelector(".target-list");
+      const afterEl = [...list.querySelectorAll(".target-box:not(.dragging)")].find(child => {
+        const rect = child.getBoundingClientRect();
+        return event.clientY < rect.top + rect.height / 2;
+      });
+      const targetColumn = state.targetColumns[targetColumnIndex];
+      if (afterEl) {
+        const insertIndex = Number(afterEl.dataset.boxIndex);
+        targetColumn.splice(insertIndex, 0, movingBox);
+      } else {
+        targetColumn.push(movingBox);
+      }
+      assignTargetHiddenStates();
+      state.controlColumns = [];
+      clearSolvability();
+      startPlaytest(false);
+      renderAll("已调整收集盘排列");
+    }
+
+    function targetFirstDepthByColor() {
+      const depths = new Map();
+      activeColors().forEach(color => depths.set(color.id, 999));
+      state.targetColumns.forEach(column => {
+        column.forEach((box, depth) => {
+          depths.set(box.color, Math.min(depths.get(box.color) ?? 999, depth));
+        });
+      });
+      return depths;
+    }
+
+    function activeTargetColors() {
+      const colors = new Set();
+      state.targetColumns.forEach(column => {
+        if (column[0]) colors.add(column[0].color);
+      });
+      return colors;
+    }
+
+    function autoArrangeTargets() {
+      const rng = createRng(Number(els.seedInput.value));
+      const colors = activeColors();
+      const columnCount = clamp(els.targetColumnCount.value, 2, 5);
+      els.targetColumnCount.value = String(columnCount);
+      const boxCount = readBoxCountInput();
+      const mode = els.variantMode.value;
+      const difficulty = currentDifficulty();
+      state.targetColumns = Array.from({ length: columnCount }, () => []);
+
+      const boxes = [];
+      for (let i = 0; i < boxCount; i += 1) {
+        const color = colors[i % colors.length];
+        boxes.push(newBox(color.id));
+      }
+      shuffle(boxes, rng);
+
+      const buriedColorCount = Math.min(Math.max(0, colors.length - 1), Math.max(0, difficulty.buryDepth));
+      const buriedColors = new Set(colors.slice(0, buriedColorCount).map(color => color.id));
+      const safe = boxes.filter(box => !buriedColors.has(box.color));
+      const risky = boxes.filter(box => buriedColors.has(box.color));
+
+      if (els.difficulty.value === "easy") {
+        boxes.sort((a, b) => a.color - b.color);
+        boxes.forEach((box, index) => state.targetColumns[index % columnCount].push(box));
+      } else {
+        const openingSlots = Math.max(columnCount, columnCount * difficulty.buryDepth);
+        for (let i = 0; i < Math.min(openingSlots, safe.length); i += 1) {
+          state.targetColumns[i % columnCount].push(safe[i]);
+        }
+        const rest = safe.slice(openingSlots).concat(risky);
+        if (mode === "spread") shuffle(rest, rng);
+        rest.forEach((box, index) => {
+          let columnIndex = index % columnCount;
+          if (mode === "frontload") {
+            columnIndex = Math.min(columnCount - 1, Math.floor(Math.pow(rng(), 1.6) * columnCount));
+          }
+          state.targetColumns[columnIndex].push(box);
+        });
+      }
+
+      state.targetColumns.forEach((column, idx) => {
+        if (mode === "balanced" && idx % 2 === 1 && els.difficulty.value === "easy") column.reverse();
+      });
+      assignTargetHiddenStates();
+      state.controlColumns = [];
+      clearSolvability();
+      startPlaytest(false);
+      renderAll("已按难度自动排列收集盘");
+    }
+
+    function splitBounds() {
+      const min = clamp(els.minSplitCount.value, 1, 6);
+      const max = clamp(els.maxSplitCount.value, 1, 6);
+      return { min, max };
+    }
+
+    function enumerateSplitPatterns(total, min, max, prefix = [], output = []) {
+      if (total === 0) {
+        output.push(prefix.slice());
+        return output;
+      }
+      for (let count = min; count <= Math.min(max, total); count += 1) {
+        prefix.push(count);
+        enumerateSplitPatterns(total - count, min, max, prefix, output);
+        prefix.pop();
+      }
+      return output;
+    }
+
+    function validSplitPatterns() {
+      const { min, max } = splitBounds();
+      if (min > max) return [];
+      return enumerateSplitPatterns(6, min, max);
+    }
+
+    function splitPatternMatchesBounds(pattern, min, max) {
+      return Array.isArray(pattern)
+        && pattern.length > 0
+        && pattern.reduce((sum, count) => sum + count, 0) === 6
+        && pattern.every(count => count >= min && count <= max);
+    }
+
+    function splitSix(rng) {
+      const { min, max } = splitBounds();
+      const valid = validSplitPatterns();
+      if (!valid.length) return null;
+
+      const preferred = currentDifficulty().split.filter(pattern => splitPatternMatchesBounds(pattern, min, max));
+      const patterns = preferred.length ? preferred : valid;
+      return patterns[Math.floor(rng() * patterns.length)].slice();
+    }
+
+    function splitConfigError() {
+      const { min, max } = splitBounds();
+      if (min > max) return "最小分割卡片数不能大于最大分割卡片数";
+      if (!validSplitPatterns().length) return `当前范围 ${min}-${max} 无法拆出总数 6 的合法分割`;
+      return "";
+    }
+
+    function generatedSplitCountsValid(columns) {
+      const { min, max } = splitBounds();
+      return columns.every(column => column.every(segment => {
+        const count = Number(segment.Count);
+        return Number.isInteger(count) && count >= min && count <= max;
+      }));
+    }
+
+    function flattenTargetBoxes() {
+      const boxes = [];
+      state.targetColumns.forEach((column, columnIndex) => {
+        column.forEach((box, rowIndex) => {
+          boxes.push({ ...box, columnIndex, rowIndex, boxId: boxes.length + 1 });
+        });
+      });
+      return boxes;
+    }
+
+    function mergeAdjacentSegments(column) {
+      // Keep configured split groups separate. The solver compresses same-color cards only for gameplay.
+      return column.map(segment => ({ ...segment }));
+    }
+
+    function columnTopPriority(color, depths, active, rng) {
+      const difficultyKey = els.difficulty.value;
+      const depth = depths.get(color) ?? 999;
+      const canOpen = active.has(color);
+      if (difficultyKey === "easy") {
+        return (canOpen ? 1000 : -1000) - depth * 80 + rng() * 0.01;
+      }
+      if (difficultyKey === "normal") {
+        return (canOpen ? 700 : -120) - depth * 42 + rng() * 0.05;
+      }
+      if (difficultyKey === "medium") {
+        return (canOpen ? 160 : 210) + depth * 38 + rng() * 0.12;
+      }
+      if (difficultyKey === "hard") {
+        return (canOpen ? 20 : 520) + depth * 68 + rng() * 0.2;
+      }
+      return (canOpen ? -100 : 900) + depth * 90 + rng() * 0.28;
+    }
+
+    function ensurePlayableOpening(columns, active, rng) {
+      const difficulty = currentDifficulty();
+      const needed = Math.min(columns.length, Math.ceil(columns.length * difficulty.openingPlayableRatio));
+      if (needed <= 0 || active.size === 0) return;
+
+      let satisfied = 0;
+      for (let i = 0; i < columns.length; i += 1) {
+        const top = columns[i][columns[i].length - 1];
+        if (top && active.has(top.Color)) satisfied += 1;
+      }
+      for (let columnIndex = 0; columnIndex < columns.length && satisfied < needed; columnIndex += 1) {
+        const column = columns[columnIndex];
+        const top = column[column.length - 1];
+        if (top && active.has(top.Color)) continue;
+
+        let sourceColumnIndex = columnIndex;
+        let sourceIndex = column.findIndex(segment => active.has(segment.Color));
+        if (sourceIndex < 0) {
+          sourceColumnIndex = columns.findIndex((candidate, idx) => {
+            if (idx === columnIndex) return false;
+            return candidate.slice(0, -1).some(segment => active.has(segment.Color));
+          });
+          if (sourceColumnIndex >= 0) {
+            sourceIndex = columns[sourceColumnIndex].findIndex(segment => active.has(segment.Color));
+          }
+        }
+        if (sourceColumnIndex < 0 || sourceIndex < 0) continue;
+
+        const [segment] = columns[sourceColumnIndex].splice(sourceIndex, 1);
+        column.push(segment);
+        satisfied += 1;
+      }
+
+      if (els.difficulty.value === "easy") {
+        columns.forEach(column => {
+          const top = column[column.length - 1];
+          if (top && active.has(top.Color)) return;
+          const index = column.findIndex(segment => active.has(segment.Color));
+          if (index >= 0) {
+            const [segment] = column.splice(index, 1);
+            column.push(segment);
+          }
+        });
+      }
+    }
+
+    function openingPlayableEnough(columns) {
+      const active = activeTargetColors();
+      const configuredCount = clamp(els.mapColumnCount.value, 2, 5);
+      if (columns.length !== configuredCount) return false;
+      if (active.size === 0) return false;
+      if (columns.some(column => column.length === 0)) return false;
+      const matched = columns.filter(column => active.has(column[column.length - 1].Color)).length;
+      const needed = Math.ceil(configuredCount * currentDifficulty().openingPlayableRatio);
+      return matched >= needed;
+    }
+
+    function adjacentSameColorCount(columns) {
+      return columns.reduce((total, column) => {
+        let count = 0;
+        for (let index = 1; index < column.length; index += 1) {
+          if (column[index - 1].Color === column[index].Color) count += 1;
+        }
+        return total + count;
+      }, 0);
+    }
+
+    function avoidAdjacentSameColors(columns) {
+      let currentScore = adjacentSameColorCount(columns);
+      const maxPasses = Math.max(1, columns.reduce((sum, column) => sum + column.length, 0));
+
+      function pairScore(column, pairIndex) {
+        if (pairIndex < 0 || pairIndex >= column.length - 1) return 0;
+        return column[pairIndex].Color === column[pairIndex + 1].Color ? 1 : 0;
+      }
+
+      function nearbyScore(column, index) {
+        return pairScore(column, index - 1) + pairScore(column, index);
+      }
+
+      for (let pass = 0; pass < maxPasses && currentScore > 0; pass += 1) {
+        let bestSwap = null;
+        let bestScore = currentScore;
+        for (let firstColumn = 0; firstColumn < columns.length; firstColumn += 1) {
+          for (let firstIndex = 0; firstIndex < columns[firstColumn].length; firstIndex += 1) {
+            for (let secondColumn = firstColumn + 1; secondColumn < columns.length; secondColumn += 1) {
+              for (let secondIndex = 0; secondIndex < columns[secondColumn].length; secondIndex += 1) {
+                const beforeScore = nearbyScore(columns[firstColumn], firstIndex) + nearbyScore(columns[secondColumn], secondIndex);
+                [columns[firstColumn][firstIndex], columns[secondColumn][secondIndex]] = [
+                  columns[secondColumn][secondIndex],
+                  columns[firstColumn][firstIndex]
+                ];
+                const afterScore = nearbyScore(columns[firstColumn], firstIndex) + nearbyScore(columns[secondColumn], secondIndex);
+                [columns[firstColumn][firstIndex], columns[secondColumn][secondIndex]] = [
+                  columns[secondColumn][secondIndex],
+                  columns[firstColumn][firstIndex]
+                ];
+                const score = currentScore - beforeScore + afterScore;
+                if (score < bestScore) {
+                  bestScore = score;
+                  bestSwap = { firstColumn, firstIndex, secondColumn, secondIndex };
+                }
+              }
+            }
+          }
+        }
+        if (!bestSwap) break;
+        const { firstColumn, firstIndex, secondColumn, secondIndex } = bestSwap;
+        [columns[firstColumn][firstIndex], columns[secondColumn][secondIndex]] = [
+          columns[secondColumn][secondIndex],
+          columns[firstColumn][firstIndex]
+        ];
+        currentScore = bestScore;
+      }
+      return columns;
+    }
+
+    function buildCandidateControlColumns(seedOffset = 0) {
+      const rng = createRng(Number(els.seedInput.value) + 97 + seedOffset * 7919);
+      const difficulty = currentDifficulty();
+      const mapCols = clamp(els.mapColumnCount.value, 2, 5);
+      els.mapColumnCount.value = mapCols;
+
+      const depths = targetFirstDepthByColor();
+      const active = activeTargetColors();
+      const targetBoxes = flattenTargetBoxes();
+      const chunks = [];
+      targetBoxes.forEach(box => {
+        const split = splitSix(rng);
+        if (!split) return;
+        split.forEach(count => {
+          const depth = depths.get(box.color) ?? 999;
+          const isCurrentlyBlocked = !active.has(box.color);
+          const risk = depth * 3 + (isCurrentlyBlocked ? 8 : 0) + rng() * difficulty.noise;
+          chunks.push({
+            Color: box.color,
+            Count: count,
+            CardType: 0,
+            BoxId: box.boxId,
+            risk
+          });
+        });
+      });
+
+      chunks.sort((a, b) => a.risk - b.risk);
+      const riskStart = Math.floor(chunks.length * (1 - difficulty.riskyTopRatio));
+      const safeChunks = chunks.slice(0, riskStart);
+      const riskyChunks = chunks.slice(riskStart);
+      shuffle(safeChunks, rng);
+      shuffle(riskyChunks, rng);
+      const ordered = safeChunks.concat(riskyChunks);
+
+      const columns = Array.from({ length: mapCols }, () => []);
+      ordered.forEach((chunk, index) => {
+        const targetIndex = els.difficulty.value === "hell"
+          ? Math.floor(rng() * mapCols)
+          : index % mapCols;
+        columns[targetIndex].push({
+          Color: chunk.Color,
+          Count: chunk.Count,
+          CardType: chunk.CardType,
+          BoxId: chunk.BoxId
+        });
+      });
+
+      columns.forEach(column => {
+        column.sort((a, b) => {
+          return columnTopPriority(a.Color, depths, active, rng) - columnTopPriority(b.Color, depths, active, rng);
+        });
+      });
+      ensurePlayableOpening(columns, active, rng);
+      avoidAdjacentSameColors(columns);
+
+      return columns.map(mergeAdjacentSegments);
+    }
+
+    function solverTargetColors(targetColumns) {
+      return targetColumns.map(column => column.map(box => Number(box.color)));
+    }
+
+    function compressForSolver(controlColumns) {
+      return controlColumns.map(column => {
+        const compressed = [];
+        column.forEach(segment => {
+          const count = Number(segment.Count) || 0;
+          if (count <= 0) return;
+          const color = Number(segment.Color);
+          const prev = compressed[compressed.length - 1];
+          if (prev && prev.Color === color) {
+            prev.Count += count;
+          } else {
+            compressed.push({ Color: color, Count: count });
+          }
+        });
+        return compressed;
+      });
+    }
+
+    function solverBoardCardCount(board) {
+      return board.reduce((sum, column) => {
+        return sum + column.reduce((colSum, group) => colSum + group.Count, 0);
+      }, 0);
+    }
+
+    function solverActiveTargetIndex(progress, targetColors, color) {
+      for (let i = 0; i < targetColors.length; i += 1) {
+        const row = progress[i].index;
+        if (row < targetColors[i].length && targetColors[i][row] === color) return i;
+      }
+      return -1;
+    }
+
+    function solverRouteColorCount(sim, targetColors, color, count) {
+      let remaining = count;
+      while (remaining > 0) {
+        const targetIndex = solverActiveTargetIndex(sim.progress, targetColors, color);
+        if (targetIndex < 0) {
+          for (let i = 0; i < remaining; i += 1) sim.buffer.push(color);
+          return;
+        }
+
+        const target = sim.progress[targetIndex];
+        const need = 6 - target.fill;
+        const take = Math.min(need, remaining);
+        target.fill += take;
+        remaining -= take;
+        if (target.fill >= 6) {
+          target.index += 1;
+          target.fill = 0;
+        }
+      }
+    }
+
+    function solverDrainBuffer(sim, targetColors) {
+      let moved = true;
+      while (moved) {
+        moved = false;
+        for (let i = 0; i < sim.buffer.length; i += 1) {
+          const color = sim.buffer[i];
+          if (solverActiveTargetIndex(sim.progress, targetColors, color) >= 0) {
+            sim.buffer.splice(i, 1);
+            solverRouteColorCount(sim, targetColors, color, 1);
+            moved = true;
+            break;
+          }
+        }
+      }
+    }
+
+    function solverTargetsDone(progress, targetColors) {
+      return progress.every((target, index) => target.index >= targetColors[index].length);
+    }
+
+    function solverIsWin(sim, targetColors) {
+      return solverBoardCardCount(sim.board) === 0 && sim.buffer.length === 0 && solverTargetsDone(sim.progress, targetColors);
+    }
+
+    function solverKey(sim) {
+      const board = sim.board.map(column => column.map(group => `${group.Color}.${group.Count}`).join(",")).join("|");
+      const progress = sim.progress.map(target => `${target.index}.${target.fill}`).join(",");
+      const buffer = sim.buffer.join(".");
+      return `${board}#${progress}#${buffer}`;
+    }
+
+    function cloneSolverProgress(progress) {
+      return progress.map(target => ({ index: target.index, fill: target.fill }));
+    }
+
+    function cloneSolverBoardWithPop(board, columnIndex) {
+      return board.map((column, index) => {
+        if (index !== columnIndex) return column;
+        return column.slice(0, -1);
+      });
+    }
+
+    function simulateSolverMove(sim, targetColors, columnIndex, bufferLimit) {
+      const column = sim.board[columnIndex];
+      const group = column[column.length - 1];
+      const next = {
+        board: cloneSolverBoardWithPop(sim.board, columnIndex),
+        progress: cloneSolverProgress(sim.progress),
+        buffer: sim.buffer.slice(),
+        peakBuffer: sim.peakBuffer || 0,
+        path: sim.path
+      };
+
+      solverRouteColorCount(next, targetColors, group.Color, group.Count);
+      solverDrainBuffer(next, targetColors);
+
+      const lose = next.buffer.length >= bufferLimit;
+      next.peakBuffer = Math.max(next.peakBuffer, next.buffer.length);
+      const move = {
+        columnIndex,
+        color: group.Color,
+        count: group.Count,
+        bufferAfter: next.buffer.length
+      };
+      next.path = sim.path.concat(move);
+      return { next, move, lose };
+    }
+
+    function solverPriority(sim) {
+      const boardLeft = solverBoardCardCount(sim.board);
+      return (sim.peakBuffer || 0) * 1000000 + sim.buffer.length * 10000 + boardLeft * 4 + sim.path.length;
+    }
+
+    function heapPush(heap, state) {
+      const item = { priority: solverPriority(state), state };
+      heap.push(item);
+      let index = heap.length - 1;
+      while (index > 0) {
+        const parent = Math.floor((index - 1) / 2);
+        if (heap[parent].priority <= item.priority) break;
+        heap[index] = heap[parent];
+        index = parent;
+      }
+      heap[index] = item;
+    }
+
+    function heapPop(heap) {
+      if (heap.length === 0) return null;
+      const first = heap[0];
+      const last = heap.pop();
+      if (heap.length && last) {
+        let index = 0;
+        while (true) {
+          const left = index * 2 + 1;
+          const right = left + 1;
+          if (left >= heap.length) break;
+          let child = left;
+          if (right < heap.length && heap[right].priority < heap[left].priority) child = right;
+          if (heap[child].priority >= last.priority) break;
+          heap[index] = heap[child];
+          index = child;
+        }
+        heap[index] = last;
+      }
+      return first.state;
+    }
+
+    function analyzeSolvability(controlColumns, targetColumns, options = {}) {
+      const targetColors = solverTargetColors(targetColumns);
+      const bufferLimit = FIXED_BUFFER_COUNT;
+      const maxStates = options.maxStates || currentSolverProfile().candidateStates;
+      const initial = {
+        board: compressForSolver(controlColumns),
+        progress: targetColors.map(() => ({ index: 0, fill: 0 })),
+        buffer: [],
+        peakBuffer: 0,
+        path: []
+      };
+      const frontier = [];
+      heapPush(frontier, initial);
+      const seen = new Set();
+      let visitedStates = 0;
+      let bestBuffer = 0;
+
+      while (frontier.length) {
+        const sim = heapPop(frontier);
+        const key = solverKey(sim);
+        if (seen.has(key)) continue;
+        seen.add(key);
+        visitedStates += 1;
+        bestBuffer = Math.max(bestBuffer, sim.peakBuffer || 0);
+
+        if (solverIsWin(sim, targetColors)) {
+          return {
+            solvable: true,
+            status: "solved",
+            visitedStates,
+            maxStates,
+            peakBuffer: sim.peakBuffer || 0,
+            solutionMoves: sim.path
+          };
+        }
+
+        if (visitedStates >= maxStates) {
+          return {
+            solvable: false,
+            status: "search_limit",
+            visitedStates,
+            maxStates,
+            peakBuffer: bestBuffer,
+            solutionMoves: []
+          };
+        }
+
+        const candidates = [];
+        for (let i = 0; i < sim.board.length; i += 1) {
+          const column = sim.board[i];
+          if (!column.length) continue;
+          const result = simulateSolverMove(sim, targetColors, i, bufferLimit);
+          if (result.lose) continue;
+          candidates.push(result.next);
+        }
+
+        candidates.forEach(candidate => heapPush(frontier, candidate));
+      }
+
+      return {
+        solvable: false,
+        status: "dead",
+        visitedStates,
+        maxStates,
+        peakBuffer: bestBuffer,
+        solutionMoves: []
+      };
+    }
+
+    function futureDepthForColor(progress, targetColors, color) {
+      let depth = 999;
+      progress.forEach((target, columnIndex) => {
+        for (let row = target.index; row < targetColors[columnIndex].length; row += 1) {
+          if (targetColors[columnIndex][row] === color) {
+            depth = Math.min(depth, row - target.index);
+            break;
+          }
+        }
+      });
+      return depth;
+    }
+
+    function boxIdForConstructiveColor(progress, targetColors, targetBoxIds, color) {
+      const activeIndex = solverActiveTargetIndex(progress, targetColors, color);
+      if (activeIndex >= 0) return targetBoxIds[activeIndex][progress[activeIndex].index];
+      let best = null;
+      progress.forEach((target, columnIndex) => {
+        for (let row = target.index; row < targetColors[columnIndex].length; row += 1) {
+          if (targetColors[columnIndex][row] === color) {
+            const candidate = { depth: row - target.index, boxId: targetBoxIds[columnIndex][row] };
+            if (!best || candidate.depth > best.depth) best = candidate;
+            break;
+          }
+        }
+      });
+      return best ? best.boxId : 0;
+    }
+
+    function peekConstructiveGroupCount(splitPlanByColor, color) {
+      return splitPlanByColor[color]?.[0] || 0;
+    }
+
+    function appendConstructiveGroup(groups, sim, targetColors, targetBoxIds, remainingByColor, splitPlanByColor, color) {
+      const plannedCount = peekConstructiveGroupCount(splitPlanByColor, color);
+      const safeCount = Math.min(plannedCount, remainingByColor[color] || 0);
+      if (safeCount <= 0) return false;
+      groups.push({
+        Color: color,
+        Count: safeCount,
+        CardType: 0,
+        BoxId: boxIdForConstructiveColor(sim.progress, targetColors, targetBoxIds, color)
+      });
+      remainingByColor[color] -= safeCount;
+      splitPlanByColor[color].shift();
+      solverRouteColorCount(sim, targetColors, color, safeCount);
+      solverDrainBuffer(sim, targetColors);
+      return true;
+    }
+
+    function pickConstructiveBlockerColor(sim, targetColors, remainingByColor, rng) {
+      const active = new Set();
+      sim.progress.forEach((target, columnIndex) => {
+        if (target.index < targetColors[columnIndex].length) {
+          active.add(targetColors[columnIndex][target.index]);
+        }
+      });
+      const candidates = activeColors()
+        .map(color => color.id)
+        .filter(color => (remainingByColor[color] || 0) > 0 && !active.has(color))
+        .map(color => ({
+          color,
+          depth: futureDepthForColor(sim.progress, targetColors, color),
+          amount: remainingByColor[color] || 0,
+          jitter: rng()
+        }))
+        .filter(candidate => candidate.depth < 999);
+      candidates.sort((a, b) => {
+        if (a.depth !== b.depth) return b.depth - a.depth;
+        if (a.amount !== b.amount) return b.amount - a.amount;
+        return a.jitter - b.jitter;
+      });
+      return candidates.length ? candidates[0].color : null;
+    }
+
+    function firstConstructiveActiveColor(sim, targetColors, remainingByColor) {
+      for (let i = 0; i < targetColors.length; i += 1) {
+        const target = sim.progress[i];
+        if (target.index >= targetColors[i].length) continue;
+        const color = targetColors[i][target.index];
+        if ((remainingByColor[color] || 0) > 0) return { columnIndex: i, color };
+      }
+      return null;
+    }
+
+    function constructivePressureTuning(scale = 1) {
+      const bufferLimit = FIXED_BUFFER_COUNT;
+      const safePeak = Math.max(0, bufferLimit - 1);
+      const table = {
+        easy: { targetPeak: 0, maxBlockers: 0, chunkMax: 1 },
+        normal: { targetPeak: Math.min(3, safePeak), maxBlockers: 1, chunkMax: 1 },
+        medium: { targetPeak: Math.min(6, safePeak), maxBlockers: 2, chunkMax: 2 },
+        hard: { targetPeak: Math.min(9, safePeak), maxBlockers: 3, chunkMax: 2 },
+        hell: { targetPeak: Math.min(12, safePeak), maxBlockers: 4, chunkMax: 3 }
+      };
+      const base = table[els.difficulty.value] || table.normal;
+      if (scale <= 0) return { targetPeak: 0, maxBlockers: 0, chunkMax: 1 };
+      return {
+        targetPeak: Math.floor(base.targetPeak * scale),
+        maxBlockers: Math.ceil(base.maxBlockers * scale),
+        chunkMax: base.chunkMax
+      };
+    }
+
+    function placeConstructiveGroups(groups, rng) {
+      const mapCols = clamp(els.mapColumnCount.value, 2, 5);
+      const columns = Array.from({ length: mapCols }, () => []);
+      groups.forEach(group => {
+        const rankedColumns = columns.map((column, columnIndex) => ({
+          columnIndex,
+          sameBottom: column[0] && column[0].Color === group.Color ? 1 : 0,
+          height: column.reduce((sum, item) => sum + item.Count, 0),
+          jitter: rng()
+        }));
+        rankedColumns.sort((a, b) => {
+          if (a.sameBottom !== b.sameBottom) return a.sameBottom - b.sameBottom;
+          if (a.height !== b.height) return a.height - b.height;
+          return a.jitter - b.jitter;
+        });
+        const targetIndex = rankedColumns[0].columnIndex;
+        columns[targetIndex].unshift({ ...group });
+      });
+      return columns.map(mergeAdjacentSegments);
+    }
+
+    function buildConstructiveControlColumns(rng, pressureScale = 1) {
+      const targetColors = solverTargetColors(state.targetColumns);
+      const targetBoxes = flattenTargetBoxes();
+      const targetBoxIds = state.targetColumns.map((column, columnIndex) => {
+        return column.map((box, rowIndex) => {
+          const flattened = targetBoxes.find(item => item.uid === box.uid && item.columnIndex === columnIndex && item.rowIndex === rowIndex);
+          return flattened ? flattened.boxId : rowIndex + 1;
+        });
+      });
+      const splitPlanByColor = {};
+      targetBoxes.forEach(box => {
+        const split = splitSix(rng);
+        if (!split) return;
+        if (!splitPlanByColor[box.color]) splitPlanByColor[box.color] = [];
+        splitPlanByColor[box.color].push(...split);
+      });
+      const remainingByColor = {};
+      Object.keys(splitPlanByColor).forEach(color => {
+        remainingByColor[color] = splitPlanByColor[color].reduce((sum, count) => sum + count, 0);
+      });
+
+      const sim = {
+        progress: targetColors.map(() => ({ index: 0, fill: 0 })),
+        buffer: []
+      };
+      const groups = [];
+      const pressure = constructivePressureTuning(pressureScale);
+      const bufferLimit = FIXED_BUFFER_COUNT;
+      let guard = Math.max(1, targetBoxes.length * 8);
+
+      while (!solverTargetsDone(sim.progress, targetColors) && guard > 0) {
+        guard -= 1;
+        let blockers = 0;
+        while (sim.buffer.length < pressure.targetPeak && blockers < pressure.maxBlockers) {
+          const color = pickConstructiveBlockerColor(sim, targetColors, remainingByColor, rng);
+          if (color === null) break;
+          const room = Math.max(0, bufferLimit - 1 - sim.buffer.length);
+          const count = peekConstructiveGroupCount(splitPlanByColor, color);
+          if (count <= 0 || count > room || count > pressure.chunkMax) break;
+          if (!appendConstructiveGroup(groups, sim, targetColors, targetBoxIds, remainingByColor, splitPlanByColor, color)) break;
+          blockers += 1;
+        }
+
+        const active = firstConstructiveActiveColor(sim, targetColors, remainingByColor);
+        if (!active) {
+          solverDrainBuffer(sim, targetColors);
+          if (!firstConstructiveActiveColor(sim, targetColors, remainingByColor)) break;
+          continue;
+        }
+        if (!appendConstructiveGroup(groups, sim, targetColors, targetBoxIds, remainingByColor, splitPlanByColor, active.color)) break;
+      }
+
+      const mapCols = clamp(els.mapColumnCount.value, 2, 5);
+      if (groups.length < mapCols) return null;
+      const balancedColumns = avoidAdjacentSameColors(placeConstructiveGroups(groups, rng));
+      const balancedCheck = analyzeSolvability(balancedColumns, state.targetColumns, { maxStates: Math.min(60000, currentSolverProfile().finalStates) });
+      if (balancedCheck.solvable && balancedCheck.peakBuffer <= solutionPeakLimit() && openingPlayableEnough(balancedColumns)) return balancedColumns;
+
+      return null;
+    }
+
+    function buildSolvabilityRecord(result, attempts, usedFallback) {
+      const moves = (result.solutionMoves || []).map((move, index) => ({
+        step: index + 1,
+        mapColumn: move.columnIndex + 1,
+        color: move.color,
+        colorName: colorById(move.color).name,
+        count: move.count,
+        bufferAfter: move.bufferAfter
+      }));
+      return {
+        guaranteed: Boolean(result.solvable),
+        status: result.status,
+        generationAttempts: attempts,
+        fallbackUsed: Boolean(usedFallback),
+        visitedStates: result.visitedStates,
+        solverMaxStates: result.maxStates,
+        peakBuffer: result.peakBuffer,
+        solutionMoveCount: moves.length,
+        solutionMoves: moves
+      };
+    }
+
+    function generateControlData() {
+      const splitError = splitConfigError();
+      if (splitError) {
+        state.controlColumns = [];
+        clearSolvability();
+        startPlaytest(false);
+        renderAll(`无法生成：${splitError}`);
+        return;
+      }
+      if (totalBoxes() === 0) autoArrangeTargets();
+      const profile = currentSolverProfile();
+      const peakLimit = solutionPeakLimit();
+      let bestResult = null;
+      let bestColumns = null;
+
+      for (let attempt = 0; attempt < profile.attempts; attempt += 1) {
+        const columns = buildCandidateControlColumns(attempt);
+        const result = analyzeSolvability(columns, state.targetColumns, { maxStates: profile.candidateStates });
+        if (!bestResult || result.visitedStates > bestResult.visitedStates) {
+          bestResult = result;
+          bestColumns = columns;
+        }
+        if (result.solvable && result.peakBuffer <= peakLimit && openingPlayableEnough(columns) && generatedSplitCountsValid(columns)) {
+          state.controlColumns = columns;
+          assignMapHiddenStates();
+          state.lastSolvability = buildSolvabilityRecord(result, attempt + 1, false);
+          renderAll(`已自动生成关卡：可解验证通过，重抽 ${attempt} 次`);
+          startPlaytest(true);
+          return;
+        }
+      }
+
+      const pressureScales = [1, 0.75, 0.5, 0.25, 0];
+      let fallbackResult = null;
+      for (let i = 0; i < pressureScales.length; i += 1) {
+        const fallbackColumns = buildConstructiveControlColumns(createRng(Number(els.seedInput.value) + 7001 + i * 379), pressureScales[i]);
+        if (!fallbackColumns) continue;
+        fallbackResult = analyzeSolvability(fallbackColumns, state.targetColumns, { maxStates: profile.finalStates });
+        if (fallbackResult.solvable && fallbackResult.peakBuffer <= peakLimit && openingPlayableEnough(fallbackColumns) && generatedSplitCountsValid(fallbackColumns)) {
+          state.controlColumns = fallbackColumns;
+          assignMapHiddenStates();
+          state.lastSolvability = buildSolvabilityRecord(fallbackResult, profile.attempts + i + 1, true);
+          renderAll(pressureScales[i] > 0 ? "随机候选未通过验证，已切换为高压保底可解关卡" : "随机候选未通过验证，已切换为低压保底可解关卡");
+          startPlaytest(true);
+          return;
+        }
+      }
+
+      state.controlColumns = [];
+      state.lastSolvability = buildSolvabilityRecord(bestResult || fallbackResult || {
+        solvable: false,
+        status: "no_valid_candidate",
+        visitedStates: 0,
+        maxStates: profile.finalStates,
+        peakBuffer: 0,
+        solutionMoves: []
+      }, profile.attempts + 1, true);
+      renderAll("未找到可证明有解的关卡，请降低难度或增加暂存槽");
+      startPlaytest(Boolean(state.controlColumns.length));
+    }
+
+    function buildLevelConfig() {
+      const config = {
+        Level: clamp(els.levelNumber.value, 1, 999999),
+        TargetColumns: state.targetColumns.map(column => column.map(box => box.color)),
+        MapColumns: state.controlColumns.map(column => column.map(segment => [segment.Color, segment.Count]))
+      };
+      const targetHidden = targetHiddenCoordinates();
+      const mapHidden = mapHiddenCoordinates();
+      if (targetHidden.length) config.TargetHidden = targetHidden;
+      if (mapHidden.length) config.MapHidden = mapHidden;
+      state.lastGenerated = config;
+      return config;
+    }
+
+    function renderBoard() {
+      els.boardPreview.style.setProperty("--map-cols", String(Math.max(2, state.controlColumns.length || Number(els.mapColumnCount.value))));
+      els.boardPreview.innerHTML = "";
+      if (state.controlColumns.length === 0) {
+        const empty = document.createElement("div");
+        empty.className = "empty-state";
+        empty.style.gridColumn = "1 / -1";
+        empty.textContent = "点击“自动生成关卡”后，这里会显示地图列堆。";
+        els.boardPreview.appendChild(empty);
+        return;
+      }
+
+      state.controlColumns.forEach((column, columnIndex) => {
+        const columnEl = document.createElement("div");
+        columnEl.className = "map-column";
+        columnEl.dataset.title = `地图列 ${columnIndex + 1}`;
+        column.forEach((segment, segmentIndex) => {
+          const isHidden = Boolean(segment.Hidden) && segmentIndex < column.length - 1;
+          const seg = document.createElement("div");
+          seg.className = `card-seg ${isHidden ? "card-back" : colorClass(segment.Color)}`;
+          seg.dataset.count = `x${segment.Count}`;
+          seg.textContent = isHidden ? "?" : colorById(segment.Color).label;
+          seg.title = isHidden ? `隐藏色组 x${segment.Count}` : `${colorById(segment.Color).name} x${segment.Count}, BoxId ${segment.BoxId}`;
+          columnEl.appendChild(seg);
+        });
+        els.boardPreview.appendChild(columnEl);
+      });
+    }
+
+    function expandControlColumns(controlColumns) {
+      return controlColumns.map(column => {
+        const cards = [];
+        column.forEach(segment => {
+          for (let i = 0; i < segment.Count; i += 1) {
+            cards.push({ Color: segment.Color, BoxId: segment.BoxId, CardType: segment.CardType, Hidden: Boolean(segment.Hidden) });
+          }
+        });
+        return cards;
+      });
+    }
+
+    function cloneTargetsForPlay() {
+      return state.targetColumns.map(column => column.map(box => ({
+        color: box.color,
+        hidden: Boolean(box.hidden),
+        fill: 0,
+        done: false,
+        uid: box.uid
+      })));
+    }
+
+    function startPlaytest(showMessage) {
+      if (state.controlColumns.length === 0) {
+        state.play = null;
+        renderPlaytest();
+        return;
+      }
+      state.play = {
+        board: expandControlColumns(state.controlColumns),
+        targets: cloneTargetsForPlay(),
+        buffer: [],
+        moves: 0,
+        status: "点击地图列开始试玩。",
+        ended: false,
+        result: null
+      };
+      renderPlaytest();
+      if (showMessage) setStatus("试玩已重置");
+    }
+
+    function activeTarget(column) {
+      return column.find(target => !target.done) || null;
+    }
+
+    function findMatchingTarget(color) {
+      for (let i = 0; i < state.play.targets.length; i += 1) {
+        const target = activeTarget(state.play.targets[i]);
+        if (target && target.color === color) return target;
+      }
+      return null;
+    }
+
+    function addToTarget(target) {
+      target.fill += 1;
+      if (target.fill >= 6) {
+        target.done = true;
+        target.fill = 6;
+        state.play.status = `${colorById(target.color).label}色目标盒已消除。`;
+      }
+    }
+
+    function routeCard(card, fromBuffer = false) {
+      const target = findMatchingTarget(card.Color);
+      if (target) {
+        addToTarget(target);
+        return true;
+      }
+      if (!fromBuffer) {
+        state.play.buffer.push(card);
+        state.play.status = `${colorById(card.Color).label}色暂时无目标盒，进入暂存槽。`;
+      }
+      return false;
+    }
+
+    function routeCardGroup(cards) {
+      if (!cards.length) return;
+      const color = cards[0].Color;
+      let targetCount = 0;
+      let bufferCount = 0;
+      cards.forEach(card => {
+        const target = findMatchingTarget(color);
+        if (target) {
+          addToTarget(target);
+          targetCount += 1;
+        } else {
+          state.play.buffer.push(card);
+          bufferCount += 1;
+        }
+      });
+
+      const label = colorById(color).label;
+      if (targetCount > 0 && bufferCount > 0) {
+        state.play.status = `${label}色连续 ${cards.length} 张：${targetCount} 张入盒，${bufferCount} 张进暂存。`;
+      } else if (targetCount > 0) {
+        state.play.status = `${label}色连续 ${cards.length} 张进入收集盘。`;
+      } else {
+        state.play.status = `${label}色连续 ${cards.length} 张暂无目标盒，进入暂存槽。`;
+      }
+    }
+
+    function drainBuffer() {
+      let moved = true;
+      while (moved) {
+        moved = false;
+        for (let i = 0; i < state.play.buffer.length; i += 1) {
+          const card = state.play.buffer[i];
+          const target = findMatchingTarget(card.Color);
+          if (target) {
+            state.play.buffer.splice(i, 1);
+            addToTarget(target);
+            moved = true;
+            break;
+          }
+        }
+      }
+    }
+
+    function remainingCards() {
+      if (!state.play) return 0;
+      return state.play.board.reduce((sum, column) => sum + column.length, 0);
+    }
+
+    function remainingTargets() {
+      if (!state.play) return 0;
+      return state.play.targets.flat().filter(target => !target.done).length;
+    }
+
+    function checkPlayEnd() {
+      if (!state.play) return;
+      const bufferLimit = FIXED_BUFFER_COUNT;
+      if (state.play.buffer.length >= bufferLimit) {
+        state.play.ended = true;
+        state.play.result = "lose";
+        state.play.status = "暂存槽已满，试玩失败。";
+        return;
+      }
+      if (remainingCards() === 0 && state.play.buffer.length === 0 && remainingTargets() === 0) {
+        state.play.ended = true;
+        state.play.result = "win";
+        state.play.status = "控制区已清空，试玩通关。";
+      }
+    }
+
+    function popTopColorGroup(column) {
+      const top = column[column.length - 1];
+      if (!top) return [];
+      const color = top.Color;
+      const group = [];
+      while (column.length && column[column.length - 1].Color === color) {
+        group.push(column.pop());
+      }
+      return group;
+    }
+
+    function playColumn(index) {
+      if (!state.play || state.play.ended) return;
+      const column = state.play.board[index];
+      if (!column || column.length === 0) return;
+      const group = popTopColorGroup(column);
+      state.play.moves += 1;
+      routeCardGroup(group);
+      drainBuffer();
+      checkPlayEnd();
+      renderPlaytest();
+    }
+
+    function hintMove() {
+      if (!state.play || state.play.ended) return;
+      const playable = state.play.board.findIndex(column => {
+        const card = column[column.length - 1];
+        return card && findMatchingTarget(card.Color);
+      });
+      const fallback = state.play.board.findIndex(column => column.length > 0);
+      const index = playable >= 0 ? playable : fallback;
+      if (index >= 0) {
+        state.play.status = playable >= 0 ? `建议点击地图列 ${index + 1}。` : `没有可直接入盒的牌，可试地图列 ${index + 1}。`;
+      }
+      renderPlaytest();
+    }
+
+    function renderPlaytest() {
+      const bufferLimit = FIXED_BUFFER_COUNT;
+      els.playBuffer.style.setProperty("--buffer-cols", String(bufferLimit));
+      els.playBuffer.innerHTML = "";
+      els.playTargets.innerHTML = "";
+      els.playBoard.innerHTML = "";
+
+      if (!state.play) {
+        els.playStatus.textContent = "生成关卡后可试玩。";
+        els.playMoves.textContent = "0";
+        els.playLeft.textContent = "0";
+        for (let i = 0; i < bufferLimit; i += 1) els.playBuffer.appendChild(document.createElement("div")).className = "buffer-slot";
+        const empty = document.createElement("div");
+        empty.className = "empty-state";
+        empty.style.gridColumn = "1 / -1";
+        empty.textContent = "暂无可试玩地图。";
+        els.playBoard.appendChild(empty);
+        return;
+      }
+
+      els.playStatus.textContent = state.play.status;
+      els.playMoves.textContent = String(state.play.moves);
+      els.playLeft.textContent = String(remainingCards());
+
+      state.play.targets.forEach((column, columnIndex) => {
+        const colEl = document.createElement("div");
+        colEl.className = "play-target-col";
+        const active = activeTarget(column);
+        if (active) colEl.appendChild(renderPlayTarget(active, false));
+        const next = column.find(target => !target.done && target !== active);
+        if (next) colEl.appendChild(renderPlayTarget(next, true));
+        if (!active) {
+          const done = document.createElement("div");
+          done.className = "hint";
+          done.textContent = `收集列 ${columnIndex + 1} 已清空`;
+          colEl.appendChild(done);
+        }
+        els.playTargets.appendChild(colEl);
+      });
+
+      for (let i = 0; i < bufferLimit; i += 1) {
+        const slot = document.createElement("div");
+        slot.className = "buffer-slot";
+        const card = state.play.buffer[i];
+        if (card) {
+          const cardEl = document.createElement("div");
+          cardEl.className = `buffer-card ${colorClass(card.Color)}`;
+          cardEl.textContent = colorById(card.Color).label;
+          slot.appendChild(cardEl);
+        }
+        els.playBuffer.appendChild(slot);
+      }
+
+      els.playBoard.style.setProperty("--map-cols", String(Math.max(1, state.play.board.length)));
+      state.play.board.forEach((column, columnIndex) => {
+        const colEl = document.createElement("button");
+        colEl.type = "button";
+        colEl.className = `play-column${state.play.ended || column.length === 0 ? " disabled" : ""}`;
+        colEl.dataset.title = `地图列 ${columnIndex + 1}`;
+        colEl.addEventListener("click", () => playColumn(columnIndex));
+        const topColor = column[column.length - 1]?.Color;
+        column.slice(-14).forEach(card => {
+          const isHidden = Boolean(card.Hidden) && card.Color !== topColor;
+          const cardEl = document.createElement("div");
+          cardEl.className = `play-card ${isHidden ? "card-back" : colorClass(card.Color)}`;
+          cardEl.textContent = isHidden ? "?" : colorById(card.Color).label;
+          colEl.appendChild(cardEl);
+        });
+        els.playBoard.appendChild(colEl);
+      });
+    }
+
+    function renderPlayTarget(target, isNext) {
+      const isHidden = Boolean(target.hidden) && isNext;
+      const targetEl = document.createElement("div");
+      targetEl.className = `play-target ${isHidden ? "card-back" : colorClass(target.color)}${isNext ? " next" : ""}`;
+      const label = document.createElement("div");
+      label.textContent = isHidden ? "?" : (isNext ? "后" : `${target.fill}/6`);
+      const fill = document.createElement("div");
+      fill.className = "target-fill";
+      fill.style.setProperty("--fill", `${Math.round((target.fill / 6) * 100)}%`);
+      fill.appendChild(document.createElement("span"));
+      targetEl.append(label, fill);
+      return targetEl;
+    }
+
+    function updateMetrics() {
+      const boxCount = totalBoxes();
+      const totalCards = state.controlColumns.reduce((sum, column) => {
+        return sum + column.reduce((columnSum, segment) => columnSum + Number(segment.Count || 0), 0);
+      }, 0);
+      const usedColors = new Set();
+      state.targetColumns.forEach(column => column.forEach(box => usedColors.add(box.color)));
+      state.controlColumns.forEach(column => column.forEach(segment => usedColors.add(segment.Color)));
+      els.metricBoxes.textContent = String(boxCount);
+      els.metricCards.textContent = String(totalCards || boxCount * 6);
+      els.metricColors.textContent = String(usedColors.size || Number(els.colorCount.value));
+      els.metricBuffer.textContent = String(FIXED_BUFFER_COUNT);
+      const solvability = state.lastSolvability;
+      if (solvability?.guaranteed) {
+        els.metricSolvability.textContent = "已验证";
+      } else if (solvability?.status === "dead") {
+        els.metricSolvability.textContent = "必死";
+      } else if (solvability?.status === "search_limit") {
+        els.metricSolvability.textContent = "超限";
+      } else {
+        els.metricSolvability.textContent = "未测";
+      }
+      els.metricSolveMoves.textContent = solvability?.solutionMoveCount ? String(solvability.solutionMoveCount) : "-";
+    }
+
+    function renderOutput() {
+      const config = buildLevelConfig();
+      els.jsonOutput.value = JSON.stringify(config, null, 2);
+      updateMetrics();
+    }
+
+    function renderAll(message) {
+      const difficulty = currentDifficulty();
+      const targetHideRatio = hiddenRatio(els.targetHideRatio);
+      const mapHideRatio = hiddenRatio(els.mapHideRatio);
+      els.colorCountValue.textContent = String(els.colorCount.value);
+      els.targetColumnCountValue.textContent = String(els.targetColumnCount.value);
+      els.targetHideRatioValue.textContent = `${targetHideRatio}%`;
+      els.mapHideRatioValue.textContent = `${mapHideRatio}%`;
+      els.riskPreview.value = `${difficulty.label} / ${(difficulty.riskyTopRatio * 100).toFixed(0)}%`;
+      normalizeTargetColors();
+      renderPalette();
+      renderTrayColumns();
+      renderBoard();
+      renderOutput();
+      renderPlaytest();
+      if (message) setStatus(message);
+    }
+
+    function setStatus(message) {
+      els.status.textContent = message;
+      window.clearTimeout(setStatus.timer);
+      setStatus.timer = window.setTimeout(() => {
+        els.status.textContent = "";
+      }, 2200);
+    }
+
+    async function copyJson() {
+      const text = els.jsonOutput.value;
+      try {
+        await navigator.clipboard.writeText(text);
+        setStatus("JSON 已复制");
+      } catch (err) {
+        els.jsonOutput.select();
+        document.execCommand("copy");
+        setStatus("JSON 已复制");
+      }
+    }
+
+    function downloadJson() {
+      const config = buildLevelConfig();
+      const blob = new Blob([JSON.stringify(config, null, 2)], { type: "application/json;charset=utf-8" });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = `Level_${config.Level}.json`;
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+      URL.revokeObjectURL(url);
+      setStatus("JSON 已下载");
+    }
+
+    function normalizeImportedTargetColumns(targetColumns) {
+      if (!Array.isArray(targetColumns) || targetColumns.length < 2 || targetColumns.length > 5) {
+        throw new Error("TargetColumns 必须是 2 至 5 列");
+      }
+      return targetColumns.map((column, columnIndex) => {
+        if (!Array.isArray(column)) throw new Error(`TargetColumns 第 ${columnIndex + 1} 列格式无效`);
+        return column.map((value, boxIndex) => {
+          const color = Number(value);
+          if (!Number.isInteger(color) || color < 0 || color >= COLORS.length) {
+            throw new Error(`TargetColumns 第 ${columnIndex + 1} 列第 ${boxIndex + 1} 项颜色无效`);
+          }
+          return newBox(color);
+        });
+      });
+    }
+
+    function normalizeImportedMapColumns(mapColumns) {
+      if (!Array.isArray(mapColumns) || mapColumns.length < 2 || mapColumns.length > 5) {
+        throw new Error("MapColumns 必须是 2 至 5 列");
+      }
+      return mapColumns.map((column, columnIndex) => {
+        if (!Array.isArray(column)) throw new Error(`MapColumns 第 ${columnIndex + 1} 列格式无效`);
+        const segments = column;
+        return segments.map((segment, segmentIndex) => {
+          if (!Array.isArray(segment) || segment.length !== 2) {
+            throw new Error(`MapColumns 第 ${columnIndex + 1} 列第 ${segmentIndex + 1} 项必须为 [Color, Count]`);
+          }
+          const color = Number(segment[0]);
+          const count = Number(segment[1]);
+          if (!Number.isInteger(color) || color < 0 || color >= COLORS.length) {
+            throw new Error(`MapColumns 第 ${columnIndex + 1} 列第 ${segmentIndex + 1} 项颜色无效`);
+          }
+          if (!Number.isInteger(count) || count < 1) {
+            throw new Error(`MapColumns 第 ${columnIndex + 1} 列第 ${segmentIndex + 1} 项数量无效`);
+          }
+          return { Color: color, Count: count, CardType: 0, BoxId: 0, Hidden: false };
+        });
+      });
+    }
+
+    function normalizeImportedHiddenCoordinates(value, columns, fieldName) {
+      if (value === undefined) return [];
+      if (!Array.isArray(value)) throw new Error(`${fieldName} 必须是坐标数组`);
+      const seen = new Set();
+      return value.map((coordinate, coordinateIndex) => {
+        if (!Array.isArray(coordinate) || coordinate.length !== 2) {
+          throw new Error(`${fieldName} 第 ${coordinateIndex + 1} 项必须为 [列索引, 项索引]`);
+        }
+        const columnIndex = Number(coordinate[0]);
+        const itemIndex = Number(coordinate[1]);
+        if (!Number.isInteger(columnIndex) || !Number.isInteger(itemIndex)
+          || columnIndex < 0 || columnIndex >= columns.length
+          || itemIndex < 0 || itemIndex >= columns[columnIndex].length) {
+          throw new Error(`${fieldName} 第 ${coordinateIndex + 1} 项坐标超出范围`);
+        }
+        const key = `${columnIndex}:${itemIndex}`;
+        if (seen.has(key)) throw new Error(`${fieldName} 存在重复坐标`);
+        seen.add(key);
+        return [columnIndex, itemIndex];
+      });
+    }
+
+    function applyImportedHiddenCoordinates(targetColumns, controlColumns, targetHidden, mapHidden) {
+      targetColumns.forEach(column => column.forEach(box => {
+        box.hidden = false;
+      }));
+      controlColumns.forEach(column => column.forEach(segment => {
+        segment.Hidden = false;
+      }));
+      targetHidden.forEach(([columnIndex, boxIndex]) => {
+        targetColumns[columnIndex][boxIndex].hidden = true;
+      });
+      mapHidden.forEach(([columnIndex, segmentIndex]) => {
+        controlColumns[columnIndex][segmentIndex].Hidden = true;
+      });
+    }
+
+    function importLevelJson(rawText) {
+      let payload;
+      try {
+        payload = JSON.parse(rawText);
+      } catch (error) {
+        throw new Error("JSON 格式无法解析");
+      }
+      if (!payload || typeof payload !== "object") throw new Error("JSON 根节点必须是对象");
+      const level = Number(payload.Level);
+      if (!Number.isInteger(level) || level < 1) {
+        throw new Error("Level 必须是大于 0 的整数");
+      }
+      const targetColumns = normalizeImportedTargetColumns(payload.TargetColumns);
+      const controlColumns = normalizeImportedMapColumns(payload.MapColumns);
+      const targetHidden = normalizeImportedHiddenCoordinates(payload.TargetHidden, targetColumns, "TargetHidden");
+      const mapHidden = normalizeImportedHiddenCoordinates(payload.MapHidden, controlColumns, "MapHidden");
+      const targetBoxCount = targetColumns.reduce((sum, column) => sum + column.length, 0);
+      if (targetBoxCount < 1) throw new Error("至少需要一个目标盒");
+
+      els.levelNumber.value = level;
+      els.targetColumnCount.value = targetColumns.length;
+      els.targetBoxCount.value = targetBoxCount;
+      els.mapColumnCount.value = controlColumns.length;
+      const importedColors = [
+        ...targetColumns.flat().map(box => box.color),
+        ...controlColumns.flat().map(segment => segment.Color)
+      ];
+      els.colorCount.value = Math.max(2, Math.min(8, Math.max(...importedColors) + 1));
+      ensureColumnCount(targetColumns.length);
+      applyImportedHiddenCoordinates(targetColumns, controlColumns, targetHidden, mapHidden);
+      state.targetColumns = targetColumns;
+      state.controlColumns = controlColumns;
+      clearSolvability();
+      renderAll("已导入关卡 JSON，正在验证可解性");
+      const result = analyzeSolvability(state.controlColumns, state.targetColumns, { maxStates: currentSolverProfile().finalStates });
+      state.lastSolvability = buildSolvabilityRecord(result, 1, false);
+      renderAll(result.solvable ? "已导入并验证通过" : "已导入，但未找到通关路径");
+      startPlaytest(false);
+    }
+
+    function importJsonFromText() {
+      try {
+        importLevelJson(els.jsonOutput.value);
+      } catch (error) {
+        setStatus(`导入失败：${error.message}`);
+      }
+    }
+
+    function importJsonFromFile(event) {
+      const file = event.target.files?.[0];
+      if (!file) return;
+      const reader = new FileReader();
+      reader.onload = () => {
+        els.jsonOutput.value = String(reader.result || "");
+        importJsonFromText();
+        event.target.value = "";
+      };
+      reader.onerror = () => setStatus("导入失败：无法读取文件");
+      reader.readAsText(file);
+    }
+
+    function loadSample() {
+      els.levelNumber.value = 3;
+      els.colorCount.value = 4;
+      els.targetColumnCount.value = 3;
+      els.targetBoxCount.value = 13;
+      els.mapColumnCount.value = 3;
+      els.seedInput.value = 3003;
+      els.difficulty.value = "normal";
+      els.variantMode.value = "balanced";
+      ensureColumnCount(3);
+      state.targetColumns = [
+        [newBox(2), newBox(2), newBox(2), newBox(1), newBox(0)],
+        [newBox(0), newBox(0), newBox(1), newBox(3)],
+        [newBox(0), newBox(1), newBox(3), newBox(3)]
+      ];
+      assignTargetHiddenStates();
+      generateControlData();
+      setStatus("已载入 Level3 风格样例");
+    }
+
+    function bindEvents() {
+      els.colorCount.addEventListener("input", () => {
+        state.controlColumns = [];
+        clearSolvability();
+        startPlaytest(false);
+        renderAll("已更新颜色数");
+      });
+      els.targetColumnCount.addEventListener("input", () => {
+        ensureColumnCount(els.targetColumnCount.value);
+        assignTargetHiddenStates();
+        state.controlColumns = [];
+        clearSolvability();
+        startPlaytest(false);
+        renderAll("已更新收集盘列数");
+      });
+      [els.levelNumber, els.targetBoxCount, els.seedInput, els.variantMode]
+        .forEach(el => el.addEventListener("input", () => renderAll()));
+      [els.minSplitCount, els.maxSplitCount].forEach(el => {
+        el.addEventListener("input", () => {
+          let min = clamp(els.minSplitCount.value, 1, 6);
+          let max = clamp(els.maxSplitCount.value, 1, 6);
+          if (min > max) {
+            if (el === els.minSplitCount) {
+              max = min;
+            } else {
+              min = max;
+            }
+          }
+          els.minSplitCount.value = String(min);
+          els.maxSplitCount.value = String(max);
+          state.controlColumns = [];
+          clearSolvability();
+          startPlaytest(false);
+          renderAll("已更新分割卡片数范围，请重新生成关卡");
+        });
+      });
+      els.targetHideRatio.addEventListener("input", () => {
+        assignTargetHiddenStates();
+        startPlaytest(false);
+        renderAll("已更新收集盘隐藏占比");
+      });
+      els.mapHideRatio.addEventListener("input", () => {
+        assignMapHiddenStates();
+        startPlaytest(false);
+        renderAll("已更新地图列隐藏占比");
+      });
+      els.mapColumnCount.addEventListener("input", () => {
+        els.mapColumnCount.value = clamp(els.mapColumnCount.value, 2, 5);
+        state.controlColumns = [];
+        clearSolvability();
+        startPlaytest(false);
+        renderAll("地图列数已限制为 2 至 5 列");
+      });
+      els.difficulty.addEventListener("input", () => {
+        autoArrangeTargets();
+        generateControlData();
+      });
+      els.arrangeBtn.addEventListener("click", autoArrangeTargets);
+      els.generateBtn.addEventListener("click", generateControlData);
+      els.resetBtn.addEventListener("click", loadSample);
+      els.copyBtn.addEventListener("click", copyJson);
+      els.importBtn.addEventListener("click", importJsonFromText);
+      els.importTextBtn.addEventListener("click", importJsonFromText);
+      els.importFileBtn.addEventListener("click", () => els.importFileInput.click());
+      els.importFileInput.addEventListener("change", importJsonFromFile);
+      els.downloadBtn.addEventListener("click", downloadJson);
+      els.playResetBtn.addEventListener("click", () => startPlaytest(true));
+      els.hintBtn.addEventListener("click", hintMove);
+    }
+
+    function init() {
+      bindEvents();
+      ensureColumnCount(Number(els.targetColumnCount.value));
+      autoArrangeTargets();
+      generateControlData();
+    }
+
+    init();
+  </script>
+</body>
+</html>
