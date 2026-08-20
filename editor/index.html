@@ -1167,6 +1167,7 @@
     const state = {
       targetColumns: [],
       controlColumns: [],
+      colorSelection: null,
       draggingBoxId: null,
       lastGenerated: null,
       lastSolvability: null,
@@ -1244,7 +1245,18 @@
     }
 
     function activeColors() {
-      return COLORS.slice(0, Number(els.colorCount.value));
+      const count = clamp(els.colorCount.value, 2, COLORS.length);
+      const selectedIds = Array.isArray(state.colorSelection)
+        && state.colorSelection.length === count
+        && state.colorSelection.every(id => COLORS.some(color => color.id === id))
+        ? state.colorSelection
+        : shuffle(COLORS.slice(), createRng(Number(els.seedInput.value) + 42017))
+          .slice(0, count)
+          .sort((a, b) => a.id - b.id)
+          .map(color => color.id);
+
+      state.colorSelection = selectedIds.slice();
+      return selectedIds.map(id => colorById(id));
     }
 
     function colorById(id) {
@@ -1301,10 +1313,11 @@
     }
 
     function normalizeTargetColors() {
-      const maxColor = Number(els.colorCount.value) - 1;
+      const colors = activeColors();
+      const allowed = new Set(colors.map(color => color.id));
       state.targetColumns.forEach(column => {
         column.forEach(box => {
-          if (box.color > maxColor) box.color = box.color % (maxColor + 1);
+          if (!allowed.has(box.color)) box.color = colors[box.color % colors.length].id;
         });
       });
     }
@@ -1378,10 +1391,10 @@
 
     function renderPalette() {
       els.palette.innerHTML = "";
-      const enabled = Number(els.colorCount.value);
+      const enabled = new Set(activeColors().map(color => color.id));
       COLORS.forEach(color => {
         const swatch = document.createElement("div");
-        swatch.className = `swatch color-${color.key}${color.id < enabled ? " active" : ""}`;
+        swatch.className = `swatch color-${color.key}${enabled.has(color.id) ? " active" : ""}`;
         swatch.textContent = color.label;
         els.palette.appendChild(swatch);
       });
@@ -2889,7 +2902,9 @@
         ...targetColumns.flat().map(box => box.color),
         ...controlColumns.flat().map(segment => segment.Color)
       ];
-      els.colorCount.value = Math.max(2, Math.min(8, Math.max(...importedColors) + 1));
+      const importedColorIds = [...new Set(importedColors)].sort((a, b) => a - b);
+      els.colorCount.value = Math.max(2, Math.min(8, importedColorIds.length));
+      state.colorSelection = importedColorIds;
       ensureColumnCount(targetColumns.length);
       applyImportedHiddenCoordinates(targetColumns, controlColumns, targetHidden, mapHidden);
       state.targetColumns = targetColumns;
@@ -2932,6 +2947,7 @@
       els.seedInput.value = 3003;
       els.difficulty.value = "normal";
       els.variantMode.value = "balanced";
+      state.colorSelection = null;
       ensureColumnCount(3);
       state.targetColumns = [
         [newBox(2), newBox(2), newBox(2), newBox(1), newBox(0)],
@@ -2945,6 +2961,7 @@
 
     function bindEvents() {
       els.colorCount.addEventListener("input", () => {
+        state.colorSelection = null;
         state.controlColumns = [];
         clearSolvability();
         startPlaytest(false);
@@ -2958,8 +2975,12 @@
         startPlaytest(false);
         renderAll("已更新收集盘列数");
       });
-      [els.levelNumber, els.targetBoxCount, els.seedInput, els.variantMode]
+      [els.levelNumber, els.targetBoxCount, els.variantMode]
         .forEach(el => el.addEventListener("input", () => renderAll()));
+      els.seedInput.addEventListener("input", () => {
+        state.colorSelection = null;
+        renderAll();
+      });
       [els.minSplitCount, els.maxSplitCount].forEach(el => {
         el.addEventListener("input", () => {
           let min = clamp(els.minSplitCount.value, 1, 6);
