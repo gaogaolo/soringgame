@@ -5,8 +5,8 @@
     "Colors": 3,
     "ColorIds": [
       0,
-      5,
-      2
+      8,
+      5
     ],
     "TargetColumns": 2,
     "MapColumns": 2,
@@ -27,8 +27,8 @@
     "Difficulty": "easy",
     "Colors": 3,
     "ColorIds": [
-      7,
-      1,
+      2,
+      9,
       6
     ],
     "TargetColumns": 2,
@@ -51,8 +51,8 @@
     "Colors": 3,
     "ColorIds": [
       3,
-      4,
-      0
+      10,
+      1
     ],
     "TargetColumns": 2,
     "MapColumns": 2,
@@ -73,9 +73,9 @@
     "Difficulty": "easy",
     "Colors": 3,
     "ColorIds": [
-      5,
-      2,
-      7
+      7,
+      4,
+      11
     ],
     "TargetColumns": 2,
     "MapColumns": 3,
@@ -96,9 +96,9 @@
     "Difficulty": "easy",
     "Colors": 3,
     "ColorIds": [
-      1,
-      6,
-      3
+      0,
+      8,
+      5
     ],
     "TargetColumns": 2,
     "MapColumns": 3,
@@ -119,9 +119,9 @@
     "Difficulty": "easy",
     "Colors": 3,
     "ColorIds": [
-      4,
-      0,
-      5
+      2,
+      9,
+      6
     ],
     "TargetColumns": 2,
     "MapColumns": 3,
@@ -142,8 +142,8 @@
     "Difficulty": "medium",
     "Colors": 3,
     "ColorIds": [
-      2,
-      7,
+      3,
+      10,
       1
     ],
     "TargetColumns": 2,
@@ -165,9 +165,9 @@
     "Difficulty": "medium",
     "Colors": 3,
     "ColorIds": [
-      6,
-      3,
-      4
+      7,
+      4,
+      11
     ],
     "TargetColumns": 2,
     "MapColumns": 3,
@@ -189,8 +189,8 @@
     "Colors": 3,
     "ColorIds": [
       0,
-      5,
-      2
+      8,
+      5
     ],
     "TargetColumns": 2,
     "MapColumns": 3,
@@ -211,8 +211,8 @@
     "Difficulty": "medium",
     "Colors": 3,
     "ColorIds": [
-      7,
-      1,
+      2,
+      9,
       6
     ],
     "TargetColumns": 2,
@@ -235,8 +235,8 @@
     "Colors": 3,
     "ColorIds": [
       3,
-      4,
-      0
+      10,
+      1
     ],
     "TargetColumns": 2,
     "MapColumns": 3,
@@ -257,9 +257,9 @@
     "Difficulty": "normal",
     "Colors": 3,
     "ColorIds": [
-      5,
-      2,
-      7
+      7,
+      4,
+      11
     ],
     "TargetColumns": 2,
     "MapColumns": 3,
@@ -280,9 +280,9 @@
     "Difficulty": "medium",
     "Colors": 3,
     "ColorIds": [
-      1,
-      6,
-      3
+      0,
+      8,
+      5
     ],
     "TargetColumns": 2,
     "MapColumns": 3,
@@ -303,9 +303,9 @@
     "Difficulty": "medium",
     "Colors": 3,
     "ColorIds": [
-      4,
-      0,
-      5
+      2,
+      9,
+      6
     ],
     "TargetColumns": 2,
     "MapColumns": 3,
@@ -326,8 +326,8 @@
     "Difficulty": "medium",
     "Colors": 3,
     "ColorIds": [
-      2,
-      7,
+      3,
+      10,
       1
     ],
     "TargetColumns": 2,
@@ -349,9 +349,9 @@
     "Difficulty": "normal",
     "Colors": 3,
     "ColorIds": [
-      6,
-      3,
-      4
+      7,
+      4,
+      11
     ],
     "TargetColumns": 2,
     "MapColumns": 3,
@@ -373,9 +373,9 @@
     "Colors": 4,
     "ColorIds": [
       0,
+      8,
       5,
-      2,
-      7
+      2
     ],
     "TargetColumns": 2,
     "MapColumns": 4,
@@ -396,7 +396,7 @@
     "Difficulty": "medium",
     "Colors": 3,
     "ColorIds": [
-      1,
+      9,
       6,
       3
     ],
@@ -419,9 +419,9 @@
     "Difficulty": "normal",
     "Colors": 3,
     "ColorIds": [
-      4,
-      0,
-      5
+      10,
+      1,
+      7
     ],
     "TargetColumns": 2,
     "MapColumns": 4,
@@ -442,10 +442,10 @@
     "Difficulty": "medium",
     "Colors": 4,
     "ColorIds": [
-      2,
-      7,
-      1,
-      6
+      4,
+      11,
+      0,
+      8
     ],
     "TargetColumns": 2,
     "MapColumns": 3,
@@ -466,9 +466,9 @@
     "Difficulty": "normal",
     "Colors": 3,
     "ColorIds": [
-      3,
-      4,
-      0
+      5,
+      2,
+      9
     ],
     "TargetColumns": 2,
     "MapColumns": 3,
@@ -489,9 +489,9 @@
     "Difficulty": "normal",
     "Colors": 3,
     "ColorIds": [
-      5,
-      2,
-      7
+      6,
+      3,
+      10
     ],
     "TargetColumns": 2,
     "MapColumns": 4,
@@ -513,8 +513,8 @@
     "Colors": 3,
     "ColorIds": [
       1,
-      6,
-      3
+      7,
+      4
     ],
     "TargetColumns": 2,
     "MapColumns": 3,
@@ -535,9 +535,9 @@
     "Difficulty": "normal",
     "Colors": 3,
     "ColorIds": [
-      4,
+      11,
       0,
-      5
+      8
     ],
     "TargetColumns": 2,
     "MapColumns": 4,
@@ -558,9 +558,9 @@
     "Difficulty": "medium",
     "Colors": 3,
     "ColorIds": [
+      5,
       2,
-      7,
-      1
+      9
     ],
     "TargetColumns": 2,
     "MapColumns": 3,
@@ -583,7 +583,7 @@
     "ColorIds": [
       6,
       3,
-      4
+      10
     ],
     "TargetColumns": 2,
     "MapColumns": 3,
@@ -604,10 +604,10 @@
     "Difficulty": "medium",
     "Colors": 4,
     "ColorIds": [
-      0,
-      5,
-      2,
-      7
+      1,
+      7,
+      4,
+      11
     ],
     "TargetColumns": 3,
     "MapColumns": 4,
@@ -628,9 +628,9 @@
     "Difficulty": "normal",
     "Colors": 3,
     "ColorIds": [
-      1,
-      6,
-      3
+      0,
+      8,
+      5
     ],
     "TargetColumns": 2,
     "MapColumns": 3,
@@ -651,10 +651,10 @@
     "Difficulty": "medium",
     "Colors": 4,
     "ColorIds": [
-      4,
-      0,
-      5,
-      2
+      2,
+      9,
+      6,
+      3
     ],
     "TargetColumns": 2,
     "MapColumns": 3,
@@ -675,10 +675,10 @@
     "Difficulty": "medium",
     "Colors": 4,
     "ColorIds": [
-      7,
+      10,
       1,
-      6,
-      3
+      7,
+      4
     ],
     "TargetColumns": 3,
     "MapColumns": 4,
@@ -699,9 +699,9 @@
     "Difficulty": "normal",
     "Colors": 3,
     "ColorIds": [
-      4,
+      11,
       0,
-      5
+      8
     ],
     "TargetColumns": 2,
     "MapColumns": 3,
@@ -722,9 +722,9 @@
     "Difficulty": "normal",
     "Colors": 4,
     "ColorIds": [
+      5,
       2,
-      7,
-      1,
+      9,
       6
     ],
     "TargetColumns": 2,
@@ -747,9 +747,9 @@
     "Colors": 4,
     "ColorIds": [
       3,
-      4,
-      0,
-      5
+      10,
+      1,
+      7
     ],
     "TargetColumns": 2,
     "MapColumns": 3,
@@ -770,9 +770,9 @@
     "Difficulty": "normal",
     "Colors": 3,
     "ColorIds": [
-      2,
-      7,
-      1
+      4,
+      11,
+      0
     ],
     "TargetColumns": 2,
     "MapColumns": 3,
@@ -793,10 +793,10 @@
     "Difficulty": "medium",
     "Colors": 4,
     "ColorIds": [
-      6,
-      3,
-      4,
-      0
+      8,
+      5,
+      2,
+      9
     ],
     "TargetColumns": 2,
     "MapColumns": 4,
@@ -817,9 +817,9 @@
     "Difficulty": "normal",
     "Colors": 4,
     "ColorIds": [
-      5,
-      2,
-      7,
+      6,
+      3,
+      10,
       1
     ],
     "TargetColumns": 2,
@@ -841,9 +841,9 @@
     "Difficulty": "medium",
     "Colors": 4,
     "ColorIds": [
-      6,
-      3,
+      7,
       4,
+      11,
       0
     ],
     "TargetColumns": 3,
@@ -865,9 +865,9 @@
     "Difficulty": "normal",
     "Colors": 3,
     "ColorIds": [
+      8,
       5,
-      2,
-      7
+      2
     ],
     "TargetColumns": 2,
     "MapColumns": 3,
@@ -888,10 +888,10 @@
     "Difficulty": "medium",
     "Colors": 4,
     "ColorIds": [
-      1,
+      9,
       6,
       3,
-      4
+      10
     ],
     "TargetColumns": 3,
     "MapColumns": 3,
@@ -912,10 +912,10 @@
     "Difficulty": "medium",
     "Colors": 4,
     "ColorIds": [
-      0,
-      5,
-      2,
-      7
+      1,
+      7,
+      4,
+      11
     ],
     "TargetColumns": 3,
     "MapColumns": 4,
@@ -936,9 +936,9 @@
     "Difficulty": "normal",
     "Colors": 3,
     "ColorIds": [
-      1,
-      6,
-      3
+      0,
+      8,
+      5
     ],
     "TargetColumns": 2,
     "MapColumns": 3,
@@ -959,10 +959,10 @@
     "Difficulty": "normal",
     "Colors": 4,
     "ColorIds": [
-      4,
-      0,
-      5,
-      2
+      2,
+      9,
+      6,
+      3
     ],
     "TargetColumns": 3,
     "MapColumns": 3,
@@ -983,10 +983,10 @@
     "Difficulty": "medium",
     "Colors": 4,
     "ColorIds": [
-      7,
+      10,
       1,
-      6,
-      3
+      7,
+      4
     ],
     "TargetColumns": 3,
     "MapColumns": 4,
@@ -1007,9 +1007,9 @@
     "Difficulty": "normal",
     "Colors": 3,
     "ColorIds": [
-      4,
+      11,
       0,
-      5
+      8
     ],
     "TargetColumns": 2,
     "MapColumns": 3,
@@ -1030,9 +1030,9 @@
     "Difficulty": "medium",
     "Colors": 4,
     "ColorIds": [
+      5,
       2,
-      7,
-      1,
+      9,
       6
     ],
     "TargetColumns": 3,
@@ -1055,9 +1055,9 @@
     "Colors": 4,
     "ColorIds": [
       3,
-      4,
-      0,
-      5
+      10,
+      1,
+      7
     ],
     "TargetColumns": 3,
     "MapColumns": 3,
@@ -1078,10 +1078,10 @@
     "Difficulty": "medium",
     "Colors": 4,
     "ColorIds": [
-      2,
-      7,
-      1,
-      6
+      4,
+      11,
+      0,
+      8
     ],
     "TargetColumns": 3,
     "MapColumns": 3,
@@ -1102,9 +1102,9 @@
     "Difficulty": "normal",
     "Colors": 3,
     "ColorIds": [
-      3,
-      4,
-      0
+      5,
+      2,
+      9
     ],
     "TargetColumns": 2,
     "MapColumns": 4,
@@ -1125,9 +1125,9 @@
     "Difficulty": "medium",
     "Colors": 4,
     "ColorIds": [
-      5,
-      2,
-      7,
+      6,
+      3,
+      10,
       1
     ],
     "TargetColumns": 3,
@@ -1149,9 +1149,9 @@
     "Difficulty": "medium",
     "Colors": 4,
     "ColorIds": [
-      6,
-      3,
+      7,
       4,
+      11,
       0
     ],
     "TargetColumns": 3,
@@ -1173,9 +1173,9 @@
     "Difficulty": "normal",
     "Colors": 3,
     "ColorIds": [
+      8,
       5,
-      2,
-      7
+      2
     ],
     "TargetColumns": 2,
     "MapColumns": 3,
@@ -1196,10 +1196,10 @@
     "Difficulty": "normal",
     "Colors": 4,
     "ColorIds": [
-      1,
+      9,
       6,
       3,
-      4
+      10
     ],
     "TargetColumns": 3,
     "MapColumns": 3,
@@ -1220,10 +1220,10 @@
     "Difficulty": "medium",
     "Colors": 4,
     "ColorIds": [
-      0,
-      5,
-      2,
-      7
+      1,
+      7,
+      4,
+      11
     ],
     "TargetColumns": 3,
     "MapColumns": 4,
@@ -1244,9 +1244,9 @@
     "Difficulty": "normal",
     "Colors": 3,
     "ColorIds": [
-      1,
-      6,
-      3
+      0,
+      8,
+      5
     ],
     "TargetColumns": 2,
     "MapColumns": 3,
@@ -1267,10 +1267,10 @@
     "Difficulty": "medium",
     "Colors": 4,
     "ColorIds": [
-      4,
-      0,
-      5,
-      2
+      2,
+      9,
+      6,
+      3
     ],
     "TargetColumns": 3,
     "MapColumns": 3,
@@ -1291,10 +1291,10 @@
     "Difficulty": "normal",
     "Colors": 4,
     "ColorIds": [
-      7,
+      10,
       1,
-      6,
-      3
+      7,
+      4
     ],
     "TargetColumns": 3,
     "MapColumns": 4,
@@ -1315,10 +1315,10 @@
     "Difficulty": "medium",
     "Colors": 4,
     "ColorIds": [
-      4,
+      11,
       0,
-      5,
-      2
+      8,
+      5
     ],
     "TargetColumns": 3,
     "MapColumns": 3,
@@ -1339,8 +1339,8 @@
     "Difficulty": "normal",
     "Colors": 3,
     "ColorIds": [
-      7,
-      1,
+      2,
+      9,
       6
     ],
     "TargetColumns": 2,
@@ -1363,9 +1363,9 @@
     "Colors": 4,
     "ColorIds": [
       3,
-      4,
-      0,
-      5
+      10,
+      1,
+      7
     ],
     "TargetColumns": 3,
     "MapColumns": 3,
@@ -1386,10 +1386,10 @@
     "Difficulty": "medium",
     "Colors": 4,
     "ColorIds": [
-      2,
-      7,
-      1,
-      6
+      4,
+      11,
+      0,
+      8
     ],
     "TargetColumns": 3,
     "MapColumns": 3,
@@ -1410,9 +1410,9 @@
     "Difficulty": "normal",
     "Colors": 3,
     "ColorIds": [
-      3,
-      4,
-      0
+      5,
+      2,
+      9
     ],
     "TargetColumns": 2,
     "MapColumns": 4,
@@ -1433,9 +1433,9 @@
     "Difficulty": "normal",
     "Colors": 4,
     "ColorIds": [
-      5,
-      2,
-      7,
+      6,
+      3,
+      10,
       1
     ],
     "TargetColumns": 3,
@@ -1457,9 +1457,9 @@
     "Difficulty": "medium",
     "Colors": 4,
     "ColorIds": [
-      6,
-      3,
+      7,
       4,
+      11,
       0
     ],
     "TargetColumns": 3,
@@ -1481,9 +1481,9 @@
     "Difficulty": "normal",
     "Colors": 3,
     "ColorIds": [
+      8,
       5,
-      2,
-      7
+      2
     ],
     "TargetColumns": 2,
     "MapColumns": 3,
@@ -1504,10 +1504,10 @@
     "Difficulty": "medium",
     "Colors": 4,
     "ColorIds": [
-      1,
+      9,
       6,
       3,
-      4
+      10
     ],
     "TargetColumns": 3,
     "MapColumns": 3,
@@ -1528,10 +1528,10 @@
     "Difficulty": "normal",
     "Colors": 4,
     "ColorIds": [
-      0,
-      5,
-      2,
-      7
+      1,
+      7,
+      4,
+      11
     ],
     "TargetColumns": 3,
     "MapColumns": 4,
@@ -1552,10 +1552,10 @@
     "Difficulty": "medium",
     "Colors": 4,
     "ColorIds": [
-      1,
-      6,
-      3,
-      4
+      0,
+      8,
+      5,
+      2
     ],
     "TargetColumns": 3,
     "MapColumns": 3,
@@ -1576,10 +1576,10 @@
     "Difficulty": "normal",
     "Colors": 4,
     "ColorIds": [
-      0,
-      5,
-      2,
-      7
+      9,
+      6,
+      3,
+      10
     ],
     "TargetColumns": 2,
     "MapColumns": 3,
@@ -1601,9 +1601,9 @@
     "Colors": 4,
     "ColorIds": [
       1,
-      6,
-      3,
-      4
+      7,
+      4,
+      11
     ],
     "TargetColumns": 3,
     "MapColumns": 4,
@@ -1625,9 +1625,9 @@
     "Colors": 4,
     "ColorIds": [
       0,
+      8,
       5,
-      2,
-      7
+      2
     ],
     "TargetColumns": 3,
     "MapColumns": 3,
@@ -1648,10 +1648,10 @@
     "Difficulty": "normal",
     "Colors": 4,
     "ColorIds": [
-      1,
+      9,
       6,
       3,
-      4
+      10
     ],
     "TargetColumns": 2,
     "MapColumns": 4,
@@ -1672,10 +1672,10 @@
     "Difficulty": "normal",
     "Colors": 4,
     "ColorIds": [
-      0,
-      5,
-      2,
-      7
+      1,
+      7,
+      4,
+      11
     ],
     "TargetColumns": 3,
     "MapColumns": 3,
@@ -1696,10 +1696,10 @@
     "Difficulty": "medium",
     "Colors": 4,
     "ColorIds": [
-      1,
-      6,
-      3,
-      4
+      0,
+      8,
+      5,
+      2
     ],
     "TargetColumns": 3,
     "MapColumns": 3,
@@ -1720,10 +1720,10 @@
     "Difficulty": "normal",
     "Colors": 4,
     "ColorIds": [
-      0,
-      5,
-      2,
-      7
+      9,
+      6,
+      3,
+      10
     ],
     "TargetColumns": 3,
     "MapColumns": 4,
@@ -1745,9 +1745,9 @@
     "Colors": 4,
     "ColorIds": [
       1,
-      6,
-      3,
-      4
+      7,
+      4,
+      11
     ],
     "TargetColumns": 3,
     "MapColumns": 3,
@@ -1769,9 +1769,9 @@
     "Colors": 4,
     "ColorIds": [
       0,
+      8,
       5,
-      2,
-      7
+      2
     ],
     "TargetColumns": 3,
     "MapColumns": 4,
@@ -1792,11 +1792,11 @@
     "Difficulty": "medium",
     "Colors": 5,
     "ColorIds": [
-      1,
+      9,
       6,
       3,
-      4,
-      0
+      10,
+      1
     ],
     "TargetColumns": 3,
     "MapColumns": 3,
@@ -1817,10 +1817,10 @@
     "Difficulty": "normal",
     "Colors": 4,
     "ColorIds": [
-      5,
-      2,
       7,
-      1
+      4,
+      11,
+      0
     ],
     "TargetColumns": 3,
     "MapColumns": 3,
@@ -1841,10 +1841,10 @@
     "Difficulty": "medium",
     "Colors": 4,
     "ColorIds": [
-      6,
-      3,
-      4,
-      0
+      8,
+      5,
+      2,
+      9
     ],
     "TargetColumns": 3,
     "MapColumns": 4,
@@ -1865,11 +1865,11 @@
     "Difficulty": "medium",
     "Colors": 5,
     "ColorIds": [
-      5,
-      2,
-      7,
+      6,
+      3,
+      10,
       1,
-      6
+      7
     ],
     "TargetColumns": 3,
     "MapColumns": 3,
@@ -1890,10 +1890,10 @@
     "Difficulty": "normal",
     "Colors": 4,
     "ColorIds": [
-      3,
       4,
+      11,
       0,
-      5
+      8
     ],
     "TargetColumns": 3,
     "MapColumns": 3,
@@ -1914,9 +1914,9 @@
     "Difficulty": "normal",
     "Colors": 4,
     "ColorIds": [
+      5,
       2,
-      7,
-      1,
+      9,
       6
     ],
     "TargetColumns": 3,
@@ -1939,9 +1939,9 @@
     "Colors": 4,
     "ColorIds": [
       3,
-      4,
-      0,
-      5
+      10,
+      1,
+      7
     ],
     "TargetColumns": 3,
     "MapColumns": 3,
@@ -1962,10 +1962,10 @@
     "Difficulty": "normal",
     "Colors": 4,
     "ColorIds": [
-      2,
-      7,
-      1,
-      6
+      4,
+      11,
+      0,
+      8
     ],
     "TargetColumns": 3,
     "MapColumns": 4,
@@ -1986,11 +1986,11 @@
     "Difficulty": "normal",
     "Colors": 5,
     "ColorIds": [
-      3,
-      4,
-      0,
       5,
-      2
+      2,
+      9,
+      6,
+      3
     ],
     "TargetColumns": 3,
     "MapColumns": 3,
@@ -2011,11 +2011,11 @@
     "Difficulty": "normal",
     "Colors": 5,
     "ColorIds": [
-      7,
+      10,
       1,
-      6,
-      3,
-      4
+      7,
+      4,
+      11
     ],
     "TargetColumns": 3,
     "MapColumns": 4,
@@ -2037,10 +2037,10 @@
     "Colors": 5,
     "ColorIds": [
       0,
+      8,
       5,
       2,
-      7,
-      1
+      9
     ],
     "TargetColumns": 3,
     "MapColumns": 3,
@@ -2063,8 +2063,8 @@
     "ColorIds": [
       6,
       3,
-      4,
-      0
+      10,
+      1
     ],
     "TargetColumns": 3,
     "MapColumns": 4,
@@ -2085,11 +2085,11 @@
     "Difficulty": "medium",
     "Colors": 5,
     "ColorIds": [
-      5,
-      2,
       7,
-      1,
-      6
+      4,
+      11,
+      0,
+      8
     ],
     "TargetColumns": 3,
     "MapColumns": 3,
@@ -2110,11 +2110,11 @@
     "Difficulty": "medium",
     "Colors": 5,
     "ColorIds": [
-      3,
-      4,
-      0,
       5,
-      2
+      2,
+      9,
+      6,
+      3
     ],
     "TargetColumns": 3,
     "MapColumns": 4,
@@ -2135,10 +2135,10 @@
     "Difficulty": "normal",
     "Colors": 4,
     "ColorIds": [
-      7,
+      10,
       1,
-      6,
-      3
+      7,
+      4
     ],
     "TargetColumns": 3,
     "MapColumns": 3,
@@ -2159,11 +2159,11 @@
     "Difficulty": "normal",
     "Colors": 5,
     "ColorIds": [
-      4,
+      11,
       0,
+      8,
       5,
-      2,
-      7
+      2
     ],
     "TargetColumns": 3,
     "MapColumns": 4,
@@ -2184,11 +2184,11 @@
     "Difficulty": "normal",
     "Colors": 5,
     "ColorIds": [
-      1,
+      9,
       6,
       3,
-      4,
-      0
+      10,
+      1
     ],
     "TargetColumns": 3,
     "MapColumns": 3,
@@ -2209,10 +2209,10 @@
     "Difficulty": "normal",
     "Colors": 4,
     "ColorIds": [
-      5,
-      2,
       7,
-      1
+      4,
+      11,
+      0
     ],
     "TargetColumns": 3,
     "MapColumns": 4,
@@ -2233,11 +2233,11 @@
     "Difficulty": "medium",
     "Colors": 5,
     "ColorIds": [
-      6,
-      3,
-      4,
-      0,
-      5
+      8,
+      5,
+      2,
+      9,
+      6
     ],
     "TargetColumns": 3,
     "MapColumns": 3,
@@ -2258,11 +2258,11 @@
     "Difficulty": "normal",
     "Colors": 5,
     "ColorIds": [
-      2,
-      7,
+      3,
+      10,
       1,
-      6,
-      3
+      7,
+      4
     ],
     "TargetColumns": 3,
     "MapColumns": 4,
@@ -2283,11 +2283,11 @@
     "Difficulty": "medium",
     "Colors": 5,
     "ColorIds": [
-      4,
+      11,
       0,
+      8,
       5,
-      2,
-      7
+      2
     ],
     "TargetColumns": 4,
     "MapColumns": 3,
@@ -2308,10 +2308,10 @@
     "Difficulty": "normal",
     "Colors": 4,
     "ColorIds": [
-      1,
+      9,
       6,
       3,
-      4
+      10
     ],
     "TargetColumns": 3,
     "MapColumns": 4,
@@ -2332,11 +2332,11 @@
     "Difficulty": "medium",
     "Colors": 5,
     "ColorIds": [
-      0,
-      5,
-      2,
+      1,
       7,
-      1
+      4,
+      11,
+      0
     ],
     "TargetColumns": 3,
     "MapColumns": 3,
@@ -2357,11 +2357,11 @@
     "Difficulty": "medium",
     "Colors": 5,
     "ColorIds": [
-      6,
-      3,
-      4,
-      0,
-      5
+      8,
+      5,
+      2,
+      9,
+      6
     ],
     "TargetColumns": 4,
     "MapColumns": 4,
@@ -2382,10 +2382,10 @@
     "Difficulty": "normal",
     "Colors": 4,
     "ColorIds": [
-      2,
-      7,
+      3,
+      10,
       1,
-      6
+      7
     ],
     "TargetColumns": 3,
     "MapColumns": 3,
@@ -2406,11 +2406,11 @@
     "Difficulty": "normal",
     "Colors": 5,
     "ColorIds": [
-      3,
       4,
+      11,
       0,
-      5,
-      2
+      8,
+      5
     ],
     "TargetColumns": 3,
     "MapColumns": 4,
@@ -2431,11 +2431,11 @@
     "Difficulty": "medium",
     "Colors": 5,
     "ColorIds": [
-      7,
-      1,
+      2,
+      9,
       6,
       3,
-      4
+      10
     ],
     "TargetColumns": 3,
     "MapColumns": 3,
@@ -2456,10 +2456,10 @@
     "Difficulty": "normal",
     "Colors": 4,
     "ColorIds": [
-      0,
-      5,
-      2,
-      7
+      1,
+      7,
+      4,
+      11
     ],
     "TargetColumns": 3,
     "MapColumns": 4,
@@ -2480,11 +2480,11 @@
     "Difficulty": "medium",
     "Colors": 5,
     "ColorIds": [
-      1,
-      6,
-      3,
-      4,
-      0
+      0,
+      8,
+      5,
+      2,
+      9
     ],
     "TargetColumns": 4,
     "MapColumns": 3,
@@ -2505,11 +2505,11 @@
     "Difficulty": "normal",
     "Colors": 5,
     "ColorIds": [
-      5,
-      2,
-      7,
+      6,
+      3,
+      10,
       1,
-      6
+      7
     ],
     "TargetColumns": 4,
     "MapColumns": 4,
@@ -2530,11 +2530,11 @@
     "Difficulty": "medium",
     "Colors": 5,
     "ColorIds": [
-      3,
       4,
+      11,
       0,
-      5,
-      2
+      8,
+      5
     ],
     "TargetColumns": 4,
     "MapColumns": 3,
@@ -2555,8 +2555,8 @@
     "Difficulty": "normal",
     "Colors": 4,
     "ColorIds": [
-      7,
-      1,
+      2,
+      9,
       6,
       3
     ],
@@ -2579,11 +2579,11 @@
     "Difficulty": "medium",
     "Colors": 5,
     "ColorIds": [
+      10,
+      1,
+      7,
       4,
-      0,
-      5,
-      2,
-      7
+      11
     ],
     "TargetColumns": 4,
     "MapColumns": 3,
@@ -2604,11 +2604,11 @@
     "Difficulty": "medium",
     "Colors": 5,
     "ColorIds": [
-      1,
-      6,
-      3,
-      4,
-      0
+      0,
+      8,
+      5,
+      2,
+      9
     ],
     "TargetColumns": 4,
     "MapColumns": 4,
@@ -2629,9 +2629,9 @@
     "Difficulty": "normal",
     "Colors": 4,
     "ColorIds": [
-      5,
-      2,
-      7,
+      6,
+      3,
+      10,
       1
     ],
     "TargetColumns": 3,
@@ -2653,11 +2653,11 @@
     "Difficulty": "hard",
     "Colors": 5,
     "ColorIds": [
-      6,
-      3,
+      7,
       4,
+      11,
       0,
-      5
+      8
     ],
     "TargetColumns": 4,
     "MapColumns": 4,
@@ -2678,9 +2678,9 @@
     "Difficulty": "medium",
     "Colors": 5,
     "ColorIds": [
+      5,
       2,
-      7,
-      1,
+      9,
       6,
       3
     ],
@@ -2703,10 +2703,10 @@
     "Difficulty": "normal",
     "Colors": 4,
     "ColorIds": [
-      4,
-      0,
-      5,
-      2
+      10,
+      1,
+      7,
+      4
     ],
     "TargetColumns": 3,
     "MapColumns": 4,
@@ -2727,11 +2727,11 @@
     "Difficulty": "medium",
     "Colors": 5,
     "ColorIds": [
-      7,
-      1,
-      6,
-      3,
-      4
+      11,
+      0,
+      8,
+      5,
+      2
     ],
     "TargetColumns": 4,
     "MapColumns": 3,
@@ -2752,10 +2752,10 @@
     "Difficulty": "normal",
     "Colors": 5,
     "ColorIds": [
-      0,
-      5,
-      2,
-      7,
+      9,
+      6,
+      3,
+      10,
       1
     ],
     "TargetColumns": 4,
@@ -2777,11 +2777,11 @@
     "Difficulty": "medium",
     "Colors": 5,
     "ColorIds": [
-      6,
-      3,
+      7,
       4,
+      11,
       0,
-      5
+      8
     ],
     "TargetColumns": 4,
     "MapColumns": 3,
@@ -2802,9 +2802,9 @@
     "Difficulty": "normal",
     "Colors": 4,
     "ColorIds": [
+      5,
       2,
-      7,
-      1,
+      9,
       6
     ],
     "TargetColumns": 3,
@@ -2827,10 +2827,10 @@
     "Colors": 5,
     "ColorIds": [
       3,
-      4,
-      0,
-      5,
-      2
+      10,
+      1,
+      7,
+      4
     ],
     "TargetColumns": 4,
     "MapColumns": 3,
@@ -2851,11 +2851,11 @@
     "Difficulty": "medium",
     "Colors": 5,
     "ColorIds": [
-      7,
-      1,
-      6,
-      3,
-      4
+      11,
+      0,
+      8,
+      5,
+      2
     ],
     "TargetColumns": 4,
     "MapColumns": 4,
@@ -2876,10 +2876,10 @@
     "Difficulty": "normal",
     "Colors": 5,
     "ColorIds": [
-      0,
-      5,
-      2,
-      7,
+      9,
+      6,
+      3,
+      10,
       1
     ],
     "TargetColumns": 3,
@@ -2901,11 +2901,11 @@
     "Difficulty": "normal",
     "Colors": 5,
     "ColorIds": [
-      6,
-      3,
+      7,
       4,
+      11,
       0,
-      5
+      8
     ],
     "TargetColumns": 4,
     "MapColumns": 4,
@@ -2926,9 +2926,9 @@
     "Difficulty": "medium",
     "Colors": 5,
     "ColorIds": [
+      5,
       2,
-      7,
-      1,
+      9,
       6,
       3
     ],
@@ -2951,11 +2951,11 @@
     "Difficulty": "normal",
     "Colors": 5,
     "ColorIds": [
+      10,
+      1,
+      7,
       4,
-      0,
-      5,
-      2,
-      7
+      11
     ],
     "TargetColumns": 3,
     "MapColumns": 4,
@@ -2976,11 +2976,11 @@
     "Difficulty": "medium",
     "Colors": 5,
     "ColorIds": [
-      1,
-      6,
-      3,
-      4,
-      0
+      0,
+      8,
+      5,
+      2,
+      9
     ],
     "TargetColumns": 4,
     "MapColumns": 3,
@@ -3001,11 +3001,11 @@
     "Difficulty": "normal",
     "Colors": 5,
     "ColorIds": [
-      5,
-      2,
-      7,
+      6,
+      3,
+      10,
       1,
-      6
+      7
     ],
     "TargetColumns": 4,
     "MapColumns": 4,
@@ -3026,11 +3026,11 @@
     "Difficulty": "medium",
     "Colors": 5,
     "ColorIds": [
-      3,
       4,
+      11,
       0,
-      5,
-      2
+      8,
+      5
     ],
     "TargetColumns": 4,
     "MapColumns": 3,
@@ -3051,11 +3051,11 @@
     "Difficulty": "normal",
     "Colors": 5,
     "ColorIds": [
-      7,
-      1,
+      2,
+      9,
       6,
       3,
-      4
+      10
     ],
     "TargetColumns": 3,
     "MapColumns": 4,
@@ -3076,11 +3076,11 @@
     "Difficulty": "medium",
     "Colors": 5,
     "ColorIds": [
-      0,
-      5,
-      2,
+      1,
       7,
-      1
+      4,
+      11,
+      0
     ],
     "TargetColumns": 4,
     "MapColumns": 3,
@@ -3101,11 +3101,11 @@
     "Difficulty": "medium",
     "Colors": 5,
     "ColorIds": [
-      6,
-      3,
-      4,
-      0,
-      5
+      8,
+      5,
+      2,
+      9,
+      6
     ],
     "TargetColumns": 4,
     "MapColumns": 4,
@@ -3126,11 +3126,11 @@
     "Difficulty": "normal",
     "Colors": 5,
     "ColorIds": [
-      2,
-      7,
+      3,
+      10,
       1,
-      6,
-      3
+      7,
+      4
     ],
     "TargetColumns": 3,
     "MapColumns": 3,
@@ -3151,11 +3151,11 @@
     "Difficulty": "normal",
     "Colors": 5,
     "ColorIds": [
-      4,
+      11,
       0,
+      8,
       5,
-      2,
-      7
+      2
     ],
     "TargetColumns": 4,
     "MapColumns": 4,
@@ -3176,11 +3176,11 @@
     "Difficulty": "medium",
     "Colors": 5,
     "ColorIds": [
-      1,
+      9,
       6,
       3,
-      4,
-      0
+      10,
+      1
     ],
     "TargetColumns": 4,
     "MapColumns": 3,
@@ -3201,11 +3201,11 @@
     "Difficulty": "normal",
     "Colors": 5,
     "ColorIds": [
-      5,
-      2,
       7,
-      1,
-      6
+      4,
+      11,
+      0,
+      8
     ],
     "TargetColumns": 3,
     "MapColumns": 4,
@@ -3226,11 +3226,11 @@
     "Difficulty": "medium",
     "Colors": 5,
     "ColorIds": [
-      3,
-      4,
-      0,
       5,
-      2
+      2,
+      9,
+      6,
+      3
     ],
     "TargetColumns": 4,
     "MapColumns": 3,
@@ -3251,11 +3251,11 @@
     "Difficulty": "hard",
     "Colors": 5,
     "ColorIds": [
-      7,
+      10,
       1,
-      6,
-      3,
-      4
+      7,
+      4,
+      11
     ],
     "TargetColumns": 4,
     "MapColumns": 4,
@@ -3277,10 +3277,10 @@
     "Colors": 6,
     "ColorIds": [
       0,
+      8,
       5,
       2,
-      7,
-      1,
+      9,
       6
     ],
     "TargetColumns": 4,
@@ -3303,10 +3303,10 @@
     "Colors": 5,
     "ColorIds": [
       3,
-      4,
-      0,
-      5,
-      2
+      10,
+      1,
+      7,
+      4
     ],
     "TargetColumns": 3,
     "MapColumns": 4,
@@ -3327,11 +3327,11 @@
     "Difficulty": "medium",
     "Colors": 5,
     "ColorIds": [
-      7,
-      1,
-      6,
-      3,
-      4
+      11,
+      0,
+      8,
+      5,
+      2
     ],
     "TargetColumns": 4,
     "MapColumns": 3,
@@ -3352,12 +3352,12 @@
     "Difficulty": "medium",
     "Colors": 6,
     "ColorIds": [
-      0,
-      5,
-      2,
-      7,
+      9,
+      6,
+      3,
+      10,
       1,
-      6
+      7
     ],
     "TargetColumns": 4,
     "MapColumns": 4,
@@ -3378,11 +3378,11 @@
     "Difficulty": "normal",
     "Colors": 5,
     "ColorIds": [
-      3,
       4,
+      11,
       0,
-      5,
-      2
+      8,
+      5
     ],
     "TargetColumns": 4,
     "MapColumns": 3,
@@ -3403,11 +3403,11 @@
     "Difficulty": "normal",
     "Colors": 5,
     "ColorIds": [
-      7,
-      1,
+      2,
+      9,
       6,
       3,
-      4
+      10
     ],
     "TargetColumns": 4,
     "MapColumns": 4,
@@ -3428,11 +3428,11 @@
     "Difficulty": "medium",
     "Colors": 5,
     "ColorIds": [
-      0,
-      5,
-      2,
+      1,
       7,
-      1
+      4,
+      11,
+      0
     ],
     "TargetColumns": 4,
     "MapColumns": 4,
@@ -3453,11 +3453,11 @@
     "Difficulty": "normal",
     "Colors": 5,
     "ColorIds": [
-      6,
-      3,
-      4,
-      0,
-      5
+      8,
+      5,
+      2,
+      9,
+      6
     ],
     "TargetColumns": 4,
     "MapColumns": 3,
@@ -3478,12 +3478,12 @@
     "Difficulty": "medium",
     "Colors": 6,
     "ColorIds": [
-      2,
-      7,
-      1,
-      6,
       3,
-      4
+      10,
+      1,
+      7,
+      4,
+      11
     ],
     "TargetColumns": 4,
     "MapColumns": 4,
@@ -3505,10 +3505,10 @@
     "Colors": 6,
     "ColorIds": [
       0,
+      8,
       5,
       2,
-      7,
-      1,
+      9,
       6
     ],
     "TargetColumns": 4,
@@ -3531,11 +3531,11 @@
     "Colors": 6,
     "ColorIds": [
       3,
+      10,
+      1,
+      7,
       4,
-      0,
-      5,
-      2,
-      7
+      11
     ],
     "TargetColumns": 4,
     "MapColumns": 4,
@@ -3556,11 +3556,11 @@
     "Difficulty": "normal",
     "Colors": 5,
     "ColorIds": [
-      1,
-      6,
-      3,
-      4,
-      0
+      0,
+      8,
+      5,
+      2,
+      9
     ],
     "TargetColumns": 4,
     "MapColumns": 4,
@@ -3581,12 +3581,12 @@
     "Difficulty": "medium",
     "Colors": 6,
     "ColorIds": [
-      5,
-      2,
-      7,
-      1,
       6,
-      3
+      3,
+      10,
+      1,
+      7,
+      4
     ],
     "TargetColumns": 4,
     "MapColumns": 3,
@@ -3607,12 +3607,12 @@
     "Difficulty": "medium",
     "Colors": 6,
     "ColorIds": [
-      4,
+      11,
       0,
+      8,
       5,
       2,
-      7,
-      1
+      9
     ],
     "TargetColumns": 4,
     "MapColumns": 4,
@@ -3635,9 +3635,9 @@
     "ColorIds": [
       6,
       3,
-      4,
-      0,
-      5
+      10,
+      1,
+      7
     ],
     "TargetColumns": 4,
     "MapColumns": 3,
@@ -3658,12 +3658,12 @@
     "Difficulty": "normal",
     "Colors": 6,
     "ColorIds": [
-      2,
-      7,
-      1,
-      6,
-      3,
-      4
+      4,
+      11,
+      0,
+      8,
+      5,
+      2
     ],
     "TargetColumns": 4,
     "MapColumns": 4,
@@ -3684,12 +3684,12 @@
     "Difficulty": "medium",
     "Colors": 6,
     "ColorIds": [
-      0,
-      5,
-      2,
-      7,
+      9,
+      6,
+      3,
+      10,
       1,
-      6
+      7
     ],
     "TargetColumns": 4,
     "MapColumns": 3,
@@ -3710,11 +3710,11 @@
     "Difficulty": "normal",
     "Colors": 5,
     "ColorIds": [
-      3,
       4,
+      11,
       0,
-      5,
-      2
+      8,
+      5
     ],
     "TargetColumns": 4,
     "MapColumns": 4,
@@ -3735,12 +3735,12 @@
     "Difficulty": "medium",
     "Colors": 6,
     "ColorIds": [
-      7,
-      1,
+      2,
+      9,
       6,
       3,
-      4,
-      0
+      10,
+      1
     ],
     "TargetColumns": 4,
     "MapColumns": 4,
@@ -3761,12 +3761,12 @@
     "Difficulty": "normal",
     "Colors": 6,
     "ColorIds": [
-      5,
-      2,
       7,
-      1,
-      6,
-      3
+      4,
+      11,
+      0,
+      8,
+      5
     ],
     "TargetColumns": 4,
     "MapColumns": 3,
@@ -3787,11 +3787,11 @@
     "Difficulty": "medium",
     "Colors": 6,
     "ColorIds": [
-      4,
-      0,
-      5,
       2,
-      7,
+      9,
+      6,
+      3,
+      10,
       1
     ],
     "TargetColumns": 4,
@@ -3813,11 +3813,11 @@
     "Difficulty": "normal",
     "Colors": 5,
     "ColorIds": [
-      6,
-      3,
+      7,
       4,
+      11,
       0,
-      5
+      8
     ],
     "TargetColumns": 4,
     "MapColumns": 3,
@@ -3838,12 +3838,12 @@
     "Difficulty": "medium",
     "Colors": 6,
     "ColorIds": [
+      5,
       2,
-      7,
-      1,
+      9,
       6,
       3,
-      4
+      10
     ],
     "TargetColumns": 4,
     "MapColumns": 4,
@@ -3864,12 +3864,12 @@
     "Difficulty": "hard",
     "Colors": 6,
     "ColorIds": [
-      0,
-      5,
-      2,
-      7,
       1,
-      6
+      7,
+      4,
+      11,
+      0,
+      8
     ],
     "TargetColumns": 5,
     "MapColumns": 4,
@@ -3890,11 +3890,11 @@
     "Difficulty": "normal",
     "Colors": 5,
     "ColorIds": [
-      3,
-      4,
-      0,
       5,
-      2
+      2,
+      9,
+      6,
+      3
     ],
     "TargetColumns": 4,
     "MapColumns": 3,
@@ -3915,11 +3915,11 @@
     "Difficulty": "normal",
     "Colors": 6,
     "ColorIds": [
-      7,
+      10,
       1,
-      6,
-      3,
+      7,
       4,
+      11,
       0
     ],
     "TargetColumns": 4,
@@ -3941,10 +3941,10 @@
     "Difficulty": "medium",
     "Colors": 6,
     "ColorIds": [
+      8,
       5,
       2,
-      7,
-      1,
+      9,
       6,
       3
     ],
@@ -3967,11 +3967,11 @@
     "Difficulty": "normal",
     "Colors": 5,
     "ColorIds": [
+      10,
+      1,
+      7,
       4,
-      0,
-      5,
-      2,
-      7
+      11
     ],
     "TargetColumns": 4,
     "MapColumns": 4,
@@ -3992,12 +3992,12 @@
     "Difficulty": "medium",
     "Colors": 6,
     "ColorIds": [
-      1,
-      6,
-      3,
-      4,
       0,
-      5
+      8,
+      5,
+      2,
+      9,
+      6
     ],
     "TargetColumns": 4,
     "MapColumns": 3,
@@ -4018,12 +4018,12 @@
     "Difficulty": "normal",
     "Colors": 6,
     "ColorIds": [
-      2,
-      7,
-      1,
-      6,
       3,
-      4
+      10,
+      1,
+      7,
+      4,
+      11
     ],
     "TargetColumns": 4,
     "MapColumns": 4,
@@ -4045,10 +4045,10 @@
     "Colors": 6,
     "ColorIds": [
       0,
+      8,
       5,
       2,
-      7,
-      1,
+      9,
       6
     ],
     "TargetColumns": 5,
@@ -4071,10 +4071,10 @@
     "Colors": 5,
     "ColorIds": [
       3,
-      4,
-      0,
-      5,
-      2
+      10,
+      1,
+      7,
+      4
     ],
     "TargetColumns": 4,
     "MapColumns": 3,
@@ -4095,12 +4095,12 @@
     "Difficulty": "medium",
     "Colors": 6,
     "ColorIds": [
-      7,
-      1,
-      6,
-      3,
-      4,
-      0
+      11,
+      0,
+      8,
+      5,
+      2,
+      9
     ],
     "TargetColumns": 4,
     "MapColumns": 4,
@@ -4121,12 +4121,12 @@
     "Difficulty": "medium",
     "Colors": 6,
     "ColorIds": [
-      5,
-      2,
-      7,
-      1,
       6,
-      3
+      3,
+      10,
+      1,
+      7,
+      4
     ],
     "TargetColumns": 5,
     "MapColumns": 3,
@@ -4147,11 +4147,11 @@
     "Difficulty": "normal",
     "Colors": 5,
     "ColorIds": [
-      4,
+      11,
       0,
+      8,
       5,
-      2,
-      7
+      2
     ],
     "TargetColumns": 4,
     "MapColumns": 4,
@@ -4172,12 +4172,12 @@
     "Difficulty": "normal",
     "Colors": 6,
     "ColorIds": [
-      1,
+      9,
       6,
       3,
-      4,
-      0,
-      5
+      10,
+      1,
+      7
     ],
     "TargetColumns": 4,
     "MapColumns": 4,
@@ -4198,12 +4198,12 @@
     "Difficulty": "medium",
     "Colors": 6,
     "ColorIds": [
-      2,
-      7,
-      1,
-      6,
-      3,
-      4
+      4,
+      11,
+      0,
+      8,
+      5,
+      2
     ],
     "TargetColumns": 5,
     "MapColumns": 3,
@@ -4224,10 +4224,10 @@
     "Difficulty": "normal",
     "Colors": 5,
     "ColorIds": [
-      0,
-      5,
-      2,
-      7,
+      9,
+      6,
+      3,
+      10,
       1
     ],
     "TargetColumns": 4,
@@ -4249,12 +4249,12 @@
     "Difficulty": "medium",
     "Colors": 6,
     "ColorIds": [
-      6,
-      3,
+      7,
       4,
+      11,
       0,
-      5,
-      2
+      8,
+      5
     ],
     "TargetColumns": 5,
     "MapColumns": 3,
@@ -4275,12 +4275,12 @@
     "Difficulty": "hard",
     "Colors": 6,
     "ColorIds": [
-      7,
-      1,
+      2,
+      9,
       6,
       3,
-      4,
-      0
+      10,
+      1
     ],
     "TargetColumns": 5,
     "MapColumns": 4,
@@ -4301,12 +4301,12 @@
     "Difficulty": "medium",
     "Colors": 6,
     "ColorIds": [
-      5,
-      2,
       7,
-      1,
-      6,
-      3
+      4,
+      11,
+      0,
+      8,
+      5
     ],
     "TargetColumns": 5,
     "MapColumns": 3,
@@ -4327,11 +4327,11 @@
     "Difficulty": "normal",
     "Colors": 5,
     "ColorIds": [
-      4,
-      0,
-      5,
       2,
-      7
+      9,
+      6,
+      3,
+      10
     ],
     "TargetColumns": 4,
     "MapColumns": 4,
@@ -4353,11 +4353,11 @@
     "Colors": 6,
     "ColorIds": [
       1,
-      6,
-      3,
+      7,
       4,
+      11,
       0,
-      5
+      8
     ],
     "TargetColumns": 5,
     "MapColumns": 4,
@@ -4378,12 +4378,12 @@
     "Difficulty": "medium",
     "Colors": 6,
     "ColorIds": [
+      5,
       2,
-      7,
-      1,
+      9,
       6,
       3,
-      4
+      10
     ],
     "TargetColumns": 5,
     "MapColumns": 3,
@@ -4404,12 +4404,12 @@
     "Difficulty": "normal",
     "Colors": 6,
     "ColorIds": [
-      0,
-      5,
-      2,
-      7,
       1,
-      6
+      7,
+      4,
+      11,
+      0,
+      8
     ],
     "TargetColumns": 4,
     "MapColumns": 4,
@@ -4430,12 +4430,12 @@
     "Difficulty": "normal",
     "Colors": 6,
     "ColorIds": [
-      3,
-      4,
-      0,
       5,
       2,
-      7
+      9,
+      6,
+      3,
+      10
     ],
     "TargetColumns": 5,
     "MapColumns": 3,
@@ -4457,11 +4457,11 @@
     "Colors": 6,
     "ColorIds": [
       1,
-      6,
-      3,
+      7,
       4,
+      11,
       0,
-      5
+      8
     ],
     "TargetColumns": 5,
     "MapColumns": 4,
@@ -4482,12 +4482,12 @@
     "Difficulty": "hard",
     "Colors": 6,
     "ColorIds": [
+      5,
       2,
-      7,
-      1,
+      9,
       6,
       3,
-      4
+      10
     ],
     "TargetColumns": 4,
     "MapColumns": 5,
@@ -4508,12 +4508,12 @@
     "Difficulty": "medium",
     "Colors": 6,
     "ColorIds": [
-      0,
-      5,
-      2,
-      7,
       1,
-      6
+      7,
+      4,
+      11,
+      0,
+      8
     ],
     "TargetColumns": 5,
     "MapColumns": 5,
@@ -4534,12 +4534,12 @@
     "Difficulty": "normal",
     "Colors": 6,
     "ColorIds": [
-      3,
-      4,
-      0,
       5,
       2,
-      7
+      9,
+      6,
+      3,
+      10
     ],
     "TargetColumns": 5,
     "MapColumns": 5,
@@ -4561,11 +4561,11 @@
     "Colors": 6,
     "ColorIds": [
       1,
-      6,
-      3,
+      7,
       4,
+      11,
       0,
-      5
+      8
     ],
     "TargetColumns": 5,
     "MapColumns": 5,
@@ -4586,12 +4586,12 @@
     "Difficulty": "normal",
     "Colors": 6,
     "ColorIds": [
+      5,
       2,
-      7,
-      1,
+      9,
       6,
       3,
-      4
+      10
     ],
     "TargetColumns": 4,
     "MapColumns": 5,
@@ -4612,12 +4612,12 @@
     "Difficulty": "medium",
     "Colors": 6,
     "ColorIds": [
-      0,
-      5,
-      2,
-      7,
       1,
-      6
+      7,
+      4,
+      11,
+      0,
+      8
     ],
     "TargetColumns": 5,
     "MapColumns": 5,
@@ -4638,12 +4638,12 @@
     "Difficulty": "medium",
     "Colors": 6,
     "ColorIds": [
-      3,
-      4,
-      0,
       5,
       2,
-      7
+      9,
+      6,
+      3,
+      10
     ],
     "TargetColumns": 5,
     "MapColumns": 5,
@@ -4665,11 +4665,11 @@
     "Colors": 6,
     "ColorIds": [
       1,
-      6,
-      3,
+      7,
       4,
+      11,
       0,
-      5
+      8
     ],
     "TargetColumns": 4,
     "MapColumns": 5,
@@ -4690,12 +4690,12 @@
     "Difficulty": "hard",
     "Colors": 6,
     "ColorIds": [
+      5,
       2,
-      7,
-      1,
+      9,
       6,
       3,
-      4
+      10
     ],
     "TargetColumns": 5,
     "MapColumns": 5,
@@ -4716,12 +4716,12 @@
     "Difficulty": "medium",
     "Colors": 6,
     "ColorIds": [
-      0,
-      5,
-      2,
-      7,
       1,
-      6
+      7,
+      4,
+      11,
+      0,
+      8
     ],
     "TargetColumns": 5,
     "MapColumns": 5,
@@ -4742,12 +4742,12 @@
     "Difficulty": "normal",
     "Colors": 6,
     "ColorIds": [
-      3,
-      4,
-      0,
       5,
       2,
-      7
+      9,
+      6,
+      3,
+      10
     ],
     "TargetColumns": 4,
     "MapColumns": 5,
@@ -4769,11 +4769,11 @@
     "Colors": 6,
     "ColorIds": [
       1,
-      6,
-      3,
+      7,
       4,
+      11,
       0,
-      5
+      8
     ],
     "TargetColumns": 5,
     "MapColumns": 5,
@@ -4794,12 +4794,12 @@
     "Difficulty": "hard",
     "Colors": 6,
     "ColorIds": [
+      5,
       2,
-      7,
-      1,
+      9,
       6,
       3,
-      4
+      10
     ],
     "TargetColumns": 5,
     "MapColumns": 5,
@@ -4820,12 +4820,12 @@
     "Difficulty": "medium",
     "Colors": 6,
     "ColorIds": [
-      0,
-      5,
-      2,
-      7,
       1,
-      6
+      7,
+      4,
+      11,
+      0,
+      8
     ],
     "TargetColumns": 5,
     "MapColumns": 5,
@@ -4846,12 +4846,12 @@
     "Difficulty": "normal",
     "Colors": 6,
     "ColorIds": [
-      3,
-      4,
-      0,
       5,
       2,
-      7
+      9,
+      6,
+      3,
+      10
     ],
     "TargetColumns": 4,
     "MapColumns": 5,
@@ -4873,11 +4873,11 @@
     "Colors": 6,
     "ColorIds": [
       1,
-      6,
-      3,
+      7,
       4,
+      11,
       0,
-      5
+      8
     ],
     "TargetColumns": 5,
     "MapColumns": 5,
@@ -4898,12 +4898,12 @@
     "Difficulty": "hell",
     "Colors": 6,
     "ColorIds": [
+      5,
       2,
-      7,
-      1,
+      9,
       6,
       3,
-      4
+      10
     ],
     "TargetColumns": 5,
     "MapColumns": 5,

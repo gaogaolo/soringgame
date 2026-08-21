@@ -57,9 +57,9 @@ function colorCountForLevel(level) {
 }
 
 function balancedColorIdsForLevel(level, colorCount) {
-  // Lay all color slots into one rotating eight-color ring. This keeps the 200-level
+  // Lay all color slots into one rotating twelve-color ring. This keeps the 200-level
   // campaign balanced globally while the seeded level generation still varies layouts.
-  const colorRing = [0, 5, 2, 7, 1, 6, 3, 4];
+  const colorRing = [0, 8, 5, 2, 9, 6, 3, 10, 1, 7, 4, 11];
   let slotsBefore = 0;
   for (let previousLevel = 1; previousLevel < level; previousLevel += 1) {
     slotsBefore += colorCountForLevel(previousLevel);

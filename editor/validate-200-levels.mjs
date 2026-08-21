@@ -7,7 +7,7 @@ const report = JSON.parse(fs.readFileSync(path.join(dir, "generation_report.json
 const files = fs.readdirSync(dir).filter(name => /^Level_\d{3}\.json$/.test(name)).sort();
 const errors = [];
 const counts = {};
-const colorUsageCounts = Array(8).fill(0);
+const colorUsageCounts = Array(12).fill(0);
 let totalTargetHidden = 0;
 let totalMapHidden = 0;
 

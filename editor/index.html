@@ -31,6 +31,10 @@
       --blue: #5f87ed;
       --purple: #9566e9;
       --pink: #ee68af;
+      --lime: #9bc94a;
+      --coral: #f16b61;
+      --indigo: #5369d9;
+      --teal: #27ad9d;
       --slot-w: 54px;
       --slot-h: 31px;
     }
@@ -816,6 +820,10 @@
     .color-blue { background: var(--blue); }
     .color-purple { background: var(--purple); }
     .color-pink { background: var(--pink); }
+    .color-lime { background: var(--lime); color: #32421a; text-shadow: none; }
+    .color-coral { background: var(--coral); }
+    .color-indigo { background: var(--indigo); }
+    .color-teal { background: var(--teal); }
 
     @media (prefers-reduced-motion: no-preference) {
       .btn,
@@ -918,7 +926,7 @@
               <div class="field">
                 <label for="colorCount">总颜色数</label>
                 <div class="range-row">
-                  <input id="colorCount" type="range" min="2" max="8" value="4">
+                  <input id="colorCount" type="range" min="2" max="12" value="4">
                   <div class="range-value" id="colorCountValue">4</div>
                 </div>
               </div>
@@ -1145,7 +1153,11 @@
       { id: 4, key: "cyan", name: "Cyan", label: "青" },
       { id: 5, key: "blue", name: "Blue", label: "蓝" },
       { id: 6, key: "purple", name: "Purple", label: "紫" },
-      { id: 7, key: "pink", name: "Pink", label: "粉" }
+      { id: 7, key: "pink", name: "Pink", label: "粉" },
+      { id: 8, key: "lime", name: "Lime", label: "黄绿" },
+      { id: 9, key: "coral", name: "Coral", label: "珊瑚" },
+      { id: 10, key: "indigo", name: "Indigo", label: "靛蓝" },
+      { id: 11, key: "teal", name: "Teal", label: "蓝绿" }
     ];
 
     const DIFFICULTIES = {
